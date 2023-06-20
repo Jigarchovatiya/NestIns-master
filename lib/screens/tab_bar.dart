@@ -11,8 +11,8 @@
 // import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:sizer/sizer.dart';
 // import '../authantication/google auth service/google_auth_service.dart';
-// import '../common_screen/Comman_Container.dart';
-// import '../common_screen/Comman_text.dart';
+// import '../common_screen/common_container.dart';
+// import '../common_screen/comman_text.dart';
 // import '../common_screen/loding.dart';
 // import '../globle/variable.dart';
 //

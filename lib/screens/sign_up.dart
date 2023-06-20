@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_Container.dart';
-import 'package:e_com/common_screen/Comman_TeextFiled.dart';
-import 'package:e_com/common_screen/Comman_text.dart';
+import 'package:e_com/common_screen/comman_text.dart';
+import 'package:e_com/common_screen/comman_textField.dart';
+import 'package:e_com/common_screen/common_container.dart';
 import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
+
 import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
 import '../bottom_Navigation/bottom_navi_demo.dart';
@@ -58,12 +59,12 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 17.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: usernamecontroler,
-                hinttext: "Enter Name",
-                HintfontFamily: "JM1",
+                hintText: "Enter Name",
+                hintFontFamily: "JM1",
                 fontFamily: "JV1",
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -75,13 +76,13 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                     gloablekey.currentState!.validate();
                   });
                 },
-                sufficicon: usernamecontroler.text.length > 2
+                suffixIcon: usernamecontroler.text.length > 2
                     ? Icon(
                         Icons.check_circle,
                         color: black,
                       )
                     : SizedBox(),
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.person_outlined,
                   size: 20.sp,
                   color: grey,
@@ -90,13 +91,13 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 15.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 fontFamily: "JV1",
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: Email_controler,
-                hinttext: "Enter Email",
-                HintfontFamily: "JM1",
+                hintText: "Enter Email",
+                hintFontFamily: "JM1",
                 validator: (value) {
                   final bool emailValid = email.hasMatch(value!);
 
@@ -109,13 +110,13 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
                 },
-                sufficicon: Email_controler.text.length == 10
+                suffixIcon: Email_controler.text.length == 10
                     ? Icon(
                         Icons.check_circle,
                         color: black,
                       )
                     : SizedBox(),
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.email,
                   size: 20.sp,
                   color: grey,
@@ -124,23 +125,21 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 15.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: Password_controler,
                 obscureText: passwordcheck,
-                sufficicon: IconButton(
+                suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
                       passwordcheck = !passwordcheck;
                     });
                   },
-                  icon: passwordcheck
-                      ? Icon(Icons.visibility_off)
-                      : Icon(Icons.visibility),
+                  icon: passwordcheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                 ),
-                hinttext: "Enter password",
-                HintfontFamily: "JM1",
+                hintText: "Enter password",
+                hintFontFamily: "JM1",
                 fontFamily: "JV1",
                 validator: (value) {
                   final bool passwordValid = password.hasMatch(value!);
@@ -154,7 +153,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
                 },
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.lock,
                   size: 20.sp,
                   color: grey,
@@ -163,57 +162,45 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               SizedBox(
                 height: 15.sp,
               ),
-              contoller.signuploder == false
+              contoller.signUpLoader == false
                   ? Center(
-                      child: Comman_Container(
+                      child: CommonContainer(
                         borderRadius: BorderRadius.circular(40),
-                        ontap: () {
-                          print("signuploder frist ${contoller.signuploder}");
+                        onTap: () {
+                          print("signuploder frist ${contoller.signUpLoader}");
                           if (gloablekey.currentState!.validate()) {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return LodingDiloge(
+                                return LoadingDialogue(
                                   message: "",
                                 );
                               },
                             );
                             // controller.signuploder = true.obs;
-                            print("Signuploder true ${contoller.signuploder}");
-                            EmailAuthService.SignupUser(
-                                    email: Email_controler.text,
-                                    password: Password_controler.text)
-                                .then((value) async {
+                            print("Signuploder true ${contoller.signUpLoader}");
+                            EmailAuthService.SignupUser(email: Email_controler.text, password: Password_controler.text).then((value) async {
                               if (value != null) {
                                 Get.back();
                                 Get.off(Bottom_navigation());
-                                FirebaseFirestore.instance
-                                    .collection("user")
-                                    .doc(FirebaseAuth.instance.currentUser!.uid)
-                                    .set({
+                                FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set({
                                   "profile_image": "",
                                   "profile_name": profile_name,
                                   "profile_email": profile_email,
                                   "favourite": [],
                                   "buyNow": [],
                                   "add to cart": [],
-                                  "User_id":
-                                      FirebaseAuth.instance.currentUser!.uid,
+                                  "User_id": FirebaseAuth.instance.currentUser!.uid,
                                 });
-                                SharedPreferences sharedPreferences =
-                                    await SharedPreferences.getInstance();
-                                await sharedPreferences.setBool(
-                                    Splash_ScreenState.KeyValue, true);
-                                await sharedPreferences!.setString(
-                                    "profile_name", usernamecontroler.text!);
-                                await sharedPreferences!.setString(
-                                    "profile_email", Email_controler.text!);
+                                SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                                await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
+                                await sharedPreferences!.setString("profile_name", usernamecontroler.text!);
+                                await sharedPreferences!.setString("profile_email", Email_controler.text!);
                               } else {
                                 Get.back();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text(
-                                        "Email is already in use by another accoount"),
+                                    content: Text("Email is already in use by another accoount"),
                                   ),
                                 );
                               }
@@ -224,7 +211,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                         width: 140.sp,
                         color: LightGreen,
                         child: Center(
-                          child: Comman_Text(
+                          child: CommonText(
                             text: "Sign Up",
                             color: white,
                             //fontFamily: "JM1",

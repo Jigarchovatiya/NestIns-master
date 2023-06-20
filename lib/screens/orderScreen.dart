@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_text.dart';
+import 'package:e_com/common_screen/comman_text.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/loding.dart';
+
+import '../common_screen/common_container.dart';
 import '../globle/variable.dart';
-import 'OderDetails.dart';
 
 class OderScreen extends StatefulWidget {
   const OderScreen({Key? key}) : super(key: key);
@@ -24,18 +22,13 @@ class _OderScreenState extends State<OderScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         name: "Your Order",
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection("Order")
-            .orderBy("createdDate", descending: true)
-            .snapshots(),
-        builder: (BuildContext context,
-            AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
-          if (snapshot.connectionState == ConnectionState.done ||
-              snapshot.hasData) {
+        stream: FirebaseFirestore.instance.collection("Order").orderBy("createdDate", descending: true).snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done || snapshot.hasData) {
             List<DocumentSnapshot> order = snapshot.data!.docs;
             print("${order.length}");
             print("${FirebaseAuth.instance.currentUser!.uid}");
@@ -54,8 +47,8 @@ class _OderScreenState extends State<OderScreen> {
                       itemBuilder: (context, index) {
                         return Row(
                           children: [
-                            Comman_Container(
-                              ontap: () {
+                            CommonContainer(
+                              onTap: () {
                                 // Get.to(OderDetails(
                                 //   date: order[index].get("createdDate"),
                                 //   image: order[index].get("image"),
@@ -68,16 +61,13 @@ class _OderScreenState extends State<OderScreen> {
                               },
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.sp),
-                                child: Comman_Container(
+                                child: CommonContainer(
                                   margin: EdgeInsets.symmetric(vertical: 8.sp),
                                   height: 120.sp,
                                   width: 120.sp,
                                   color: grey,
                                   borderRadius: BorderRadius.circular(20),
-                                  image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: NetworkImage(
-                                          order[index].get("image"))),
+                                  image: DecorationImage(fit: BoxFit.cover, image: NetworkImage(order[index].get("image"))),
                                 ),
                               ),
                             ),
@@ -87,7 +77,7 @@ class _OderScreenState extends State<OderScreen> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Comman_Text(
+                                  CommonText(
                                     text: "${order[index].get("product_name")}",
                                     fontSize: 15.sp,
                                     //fontFamily: "JM1",
@@ -95,7 +85,7 @@ class _OderScreenState extends State<OderScreen> {
                                   SizedBox(
                                     height: 5.sp,
                                   ),
-                                  Comman_Text(
+                                  CommonText(
                                     text: order[index].get("product_catagory"),
                                     fontSize: 15.sp,
                                     // fontFamily: "JV1",
@@ -103,9 +93,8 @@ class _OderScreenState extends State<OderScreen> {
                                   SizedBox(
                                     height: 10.sp,
                                   ),
-                                  Comman_Text(
-                                    text:
-                                        order[index].get("product_price") + "₹",
+                                  CommonText(
+                                    text: order[index].get("product_price") + "₹",
                                     fontSize: 15.sp,
                                     color: red,
                                     //fontFamily: "JV1"
@@ -116,7 +105,7 @@ class _OderScreenState extends State<OderScreen> {
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [
                                         MaterialButton(
-                                          child: Comman_Text(
+                                          child: CommonText(
                                             text: "Cancel Order",
                                           ),
                                           onPressed: () {
@@ -125,17 +114,8 @@ class _OderScreenState extends State<OderScreen> {
                                                 context: context,
                                                 builder: (context) {
                                                   return AlertDialog(
-                                                    title: const Text(
-                                                        "Cancel Order",
-                                                        style: TextStyle(
-                                                            fontFamily: "JV1",
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    content: const Text(
-                                                        "Are you sure you want to Cancel Order?",
-                                                        style: TextStyle(
-                                                            fontFamily: "JV1")),
+                                                    title: const Text("Cancel Order", style: TextStyle(fontFamily: "JV1", fontWeight: FontWeight.bold)),
+                                                    content: const Text("Are you sure you want to Cancel Order?", style: TextStyle(fontFamily: "JV1")),
                                                     actions: [
                                                       IconButton(
                                                         onPressed: () {
@@ -152,13 +132,7 @@ class _OderScreenState extends State<OderScreen> {
                                                           color: Colors.green,
                                                         ),
                                                         onPressed: () async {
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .collection(
-                                                                  "Order")
-                                                              .doc(order[index]
-                                                                  .id)
-                                                              .delete();
+                                                          FirebaseFirestore.instance.collection("Order").doc(order[index].id).delete();
                                                           Get.back();
                                                         },
                                                       ),

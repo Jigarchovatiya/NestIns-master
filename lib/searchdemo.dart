@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_Container.dart';
+import 'package:e_com/common_screen/common_container.dart';
 import 'package:e_com/globle/variable.dart';
 import 'package:e_com/screens/Details_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,12 +24,7 @@ class _searchpageState extends State<searchpage> {
 
   searchFunction(query, searchList) {
     result = searchList.where((element) {
-      return element["product_name"].toLowerCase().contains(query) ||
-          element["product_name"].toUpperCase().contains(query) ||
-          element["product_name"].contains(query) ||
-          element["product_name"].toLowerCase().contains(query) &&
-              element["product_name"].contains(query) &&
-              element["product_name"].toUpperCase().contains(query);
+      return element["product_name"].toLowerCase().contains(query) || element["product_name"].toUpperCase().contains(query) || element["product_name"].contains(query) || element["product_name"].toLowerCase().contains(query) && element["product_name"].contains(query) && element["product_name"].toUpperCase().contains(query);
     }).toList();
     return result;
   }
@@ -74,18 +69,14 @@ class _searchpageState extends State<searchpage> {
                     : SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: StreamBuilder(
-                            stream: FirebaseFirestore.instance
-                                .collection("Product")
-                                .snapshots(),
-                            builder: (context,
-                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                            stream: FirebaseFirestore.instance.collection("Product").snapshots(),
+                            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                               if (!snapshot.hasData) {
                                 return const Center(
                                   child: CircularProgressIndicator(),
                                 );
                               }
-                              var varData =
-                                  searchFunction(query, snapshot.data!.docs);
+                              var varData = searchFunction(query, snapshot.data!.docs);
 
                               return varData.isEmpty
                                   ? Center(
@@ -103,8 +94,7 @@ class _searchpageState extends State<searchpage> {
                                       physics: NeverScrollableScrollPhysics(),
                                       itemCount: varData.length,
                                       itemBuilder: (context, index) {
-                                        final product =
-                                            snapshot.data!.docs[index];
+                                        final product = snapshot.data!.docs[index];
                                         return GestureDetector(
                                             onTap: () {
                                               Get.to(
@@ -112,40 +102,27 @@ class _searchpageState extends State<searchpage> {
                                                   sid: product['seller_id'],
                                                   pid: product['product_id'],
                                                   image: product['image'],
-                                                  category: product[
-                                                      "product_catagory"],
+                                                  category: product["product_catagory"],
                                                   buynow: [],
-                                                  details: product[
-                                                      "product_details"],
+                                                  details: product["product_details"],
                                                   name: product["product_name"],
-                                                  price:
-                                                      product["product_price"],
-                                                  stock:
-                                                      product['product_stock'],
+                                                  price: product["product_price"],
+                                                  stock: product['product_stock'],
                                                 ),
                                               );
                                             },
                                             child: Card(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                               elevation: 5,
                                               child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
                                                   SizedBox(height: 10),
                                                   Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 10,
-                                                            vertical: 10),
+                                                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                                     child: ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
-                                                      child: Comman_Container(
+                                                      borderRadius: BorderRadius.circular(10),
+                                                      child: CommonContainer(
                                                         height: 120.sp,
                                                         width: 80.sp,
                                                         image: DecorationImage(
@@ -166,32 +143,18 @@ class _searchpageState extends State<searchpage> {
 
                                                   Expanded(
                                                     child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisAlignment: MainAxisAlignment.center,
                                                       children: [
                                                         Row(
                                                           children: [
                                                             Text(
                                                               "Name : ",
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      15.sp,
-                                                                  fontFamily:
-                                                                      "JM1"),
+                                                              style: TextStyle(fontSize: 15.sp, fontFamily: "JM1"),
                                                             ),
                                                             Text(
-                                                              product[
-                                                                  "product_name"],
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      15.sp,
-                                                                  color: grey,
-                                                                  fontFamily:
-                                                                      "JV1"),
+                                                              product["product_name"],
+                                                              style: TextStyle(fontSize: 15.sp, color: grey, fontFamily: "JV1"),
                                                             ),
                                                           ],
                                                         ),
@@ -199,26 +162,14 @@ class _searchpageState extends State<searchpage> {
                                                           children: [
                                                             Text(
                                                               "Catagory : ",
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      15.sp,
-                                                                  fontFamily:
-                                                                      "JM1"),
+                                                              style: TextStyle(fontSize: 15.sp, fontFamily: "JM1"),
                                                             ),
                                                             Expanded(
                                                               child: Text(
-                                                                product[
-                                                                    "product_catagory"],
+                                                                product["product_catagory"],
                                                                 maxLines: 1,
-                                                                overflow:
-                                                                    TextOverflow
-                                                                        .ellipsis,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        15.sp,
-                                                                    color: grey,
-                                                                    fontFamily:
-                                                                        "JV1"),
+                                                                overflow: TextOverflow.ellipsis,
+                                                                style: TextStyle(fontSize: 15.sp, color: grey, fontFamily: "JV1"),
                                                               ),
                                                             ),
                                                           ],
@@ -227,22 +178,11 @@ class _searchpageState extends State<searchpage> {
                                                           children: [
                                                             Text(
                                                               "Price : ",
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      15.sp,
-                                                                  fontFamily:
-                                                                      "JM1"),
+                                                              style: TextStyle(fontSize: 15.sp, fontFamily: "JM1"),
                                                             ),
                                                             Text(
-                                                              product["product_price"] +
-                                                                  "₹",
-                                                              style: TextStyle(
-                                                                  fontSize:
-                                                                      15.sp,
-                                                                  color: Colors
-                                                                      .red,
-                                                                  fontFamily:
-                                                                      "JV1"),
+                                                              product["product_price"] + "₹",
+                                                              style: TextStyle(fontSize: 15.sp, color: Colors.red, fontFamily: "JV1"),
                                                             ),
                                                           ],
                                                         ),

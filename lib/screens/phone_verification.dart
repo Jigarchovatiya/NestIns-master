@@ -1,4 +1,4 @@
-// import 'package:e_com/common_screen/Comman_text.dart';
+// import 'package:e_com/common_screen/comman_text.dart';
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';

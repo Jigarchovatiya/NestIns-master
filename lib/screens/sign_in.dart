@@ -1,15 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_Container.dart';
-import 'package:e_com/common_screen/Comman_TeextFiled.dart';
-import 'package:e_com/common_screen/Comman_text.dart';
+import 'package:e_com/common_screen/comman_text.dart';
+import 'package:e_com/common_screen/comman_textField.dart';
+import 'package:e_com/common_screen/common_container.dart';
 import 'package:e_com/globle/shardpefrence.dart';
 import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:flutter/material.dart';
+
 import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
 import '../bottom_Navigation/bottom_NAV.dart';
@@ -52,12 +53,12 @@ class _Sign_InState extends State<Sign_In> {
               SizedBox(
                 height: 17.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: usernamecontroler,
-                hinttext: "Enter Name",
-                HintfontFamily: "JV1",
+                hintText: "Enter Name",
+                hintFontFamily: "JV1",
                 fontFamily: "JV1",
                 validator: (value) {
                   if (value!.isEmpty) {
@@ -69,13 +70,13 @@ class _Sign_InState extends State<Sign_In> {
                     gloablekey.currentState!.validate();
                   });
                 },
-                sufficicon: usernamecontroler.text.length > 2
+                suffixIcon: usernamecontroler.text.length > 2
                     ? Icon(
                         Icons.check_circle,
                         color: Colors.black,
                       )
                     : SizedBox(),
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.person_outlined,
                   size: 20.sp,
                   color: Colors.grey,
@@ -84,12 +85,12 @@ class _Sign_InState extends State<Sign_In> {
               SizedBox(
                 height: 15.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: Email_controler,
-                hinttext: "Enter Email",
-                HintfontFamily: "JV1",
+                hintText: "Enter Email",
+                hintFontFamily: "JV1",
                 fontFamily: "JV1",
                 validator: (value) {
                   final bool emailValid = email.hasMatch(value!);
@@ -102,7 +103,7 @@ class _Sign_InState extends State<Sign_In> {
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
                 },
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.email,
                   size: 20,
                   color: Colors.grey,
@@ -111,23 +112,21 @@ class _Sign_InState extends State<Sign_In> {
               SizedBox(
                 height: 15.sp,
               ),
-              Comman_TexxtFiled(
+              CommonTextFiled(
                 filled: true,
-                fillcolor: Colors.grey.shade200,
+                fillColor: Colors.grey.shade200,
                 controller: Password_controler,
                 obscureText: passwordcheck,
-                sufficicon: IconButton(
+                suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
                       passwordcheck = !passwordcheck;
                     });
                   },
-                  icon: passwordcheck
-                      ? Icon(Icons.visibility_off)
-                      : Icon(Icons.visibility),
+                  icon: passwordcheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                 ),
-                hinttext: "Enter password",
-                HintfontFamily: "JV1",
+                hintText: "Enter password",
+                hintFontFamily: "JV1",
                 fontFamily: "JV1",
                 validator: (value) {
                   final bool passwordValid = password.hasMatch(value!);
@@ -141,7 +140,7 @@ class _Sign_InState extends State<Sign_In> {
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
                 },
-                prefixicon: Icon(
+                prefixIcon: Icon(
                   Icons.lock,
                   size: 20.sp,
                   color: Colors.grey,
@@ -151,30 +150,24 @@ class _Sign_InState extends State<Sign_In> {
                 height: 15.sp,
               ),
               Center(
-                child: Comman_Container(
+                child: CommonContainer(
                   borderRadius: BorderRadius.circular(40),
-                  ontap: () {
+                  onTap: () {
                     print("hello");
                     if (gloablekey.currentState!.validate()) {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          return LodingDiloge(
+                          return LoadingDialogue(
                             message: "",
                           );
                         },
                       );
-                      EmailAuthService.LoginUser(
-                              password: Password_controler.text,
-                              email: Email_controler.text)
-                          .then((value) async {
+                      EmailAuthService.LoginUser(password: Password_controler.text, email: Email_controler.text).then((value) async {
                         if (value != null) {
                           Get.back();
                           Get.off(Bottom_navigation());
-                          FirebaseFirestore.instance
-                              .collection("user")
-                              .doc(FirebaseAuth.instance.currentUser!.uid)
-                              .set({
+                          FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set({
                             "profile_image": "",
                             "profile_name": profile_name,
                             "profile_email": profile_email,
@@ -183,14 +176,10 @@ class _Sign_InState extends State<Sign_In> {
                             "add to cart": [],
                             "User_id": FirebaseAuth.instance.currentUser!.uid,
                           });
-                          SharedPreferences sharedPreferences =
-                              await SharedPreferences.getInstance();
-                          await sharedPreferences.setBool(
-                              Splash_ScreenState.KeyValue, true);
-                          await sharedPreferences!.setString(
-                              "profile_name", usernamecontroler.text!);
-                          await sharedPreferences!.setString(
-                              "profile_email", Email_controler.text!);
+                          SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                          await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
+                          await sharedPreferences!.setString("profile_name", usernamecontroler.text!);
+                          await sharedPreferences!.setString("profile_email", Email_controler.text!);
                         } else {
                           Get.back();
                           ScaffoldMessenger.of(context).showSnackBar(
@@ -206,7 +195,7 @@ class _Sign_InState extends State<Sign_In> {
                   width: 140.sp,
                   color: LightGreen,
                   child: Center(
-                    child: Comman_Text(
+                    child: CommonText(
                       text: "Sign In",
                       //fontFamily: "JV1",
                       color: Colors.white,

@@ -5,8 +5,8 @@
 // import 'package:get/get.dart';
 // import 'package:get/get_core/src/get_main.dart';
 // import 'package:sizer/sizer.dart';
-// import '../common_screen/Comman_Container.dart';
-// import '../common_screen/Comman_text.dart';
+// import '../common_screen/common_container.dart';
+// import '../common_screen/comman_text.dart';
 // import '../getx/controller.dart';
 // import 'Favorite_Screen.dart';
 // import 'categories_screen.dart';

@@ -1,22 +1,21 @@
 import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:http/http.dart' as http;
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:sizer/sizer.dart';
-import 'package:http/http.dart' as http;
-import '../bottom_Navigation/bottom_NAV.dart';
+
 import '../bottom_Navigation/bottom_navi_demo.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_TeextFiled.dart';
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
+import '../common_screen/comman_textField.dart';
+import '../common_screen/common_container.dart';
 import '../getx/controller.dart';
 import '../globle/variable.dart';
 import '../helper/pincodeJson.dart';
-import 'bottom_navigation_screen.dart';
-import 'home_screen.dart';
 
 class AddressDemo extends StatefulWidget {
   final String pprice, pid, sid;
@@ -40,16 +39,9 @@ class AddressDemo extends StatefulWidget {
 class _AddressDemoState extends State<AddressDemo> {
   DateTime date = DateTime.now();
   pincodeJson? pinJson;
-  String pincode = "",
-      state = "",
-      city = "",
-      area = "",
-      phone = "",
-      no = "",
-      error = "";
+  String pincode = "", state = "", city = "", area = "", phone = "", no = "", error = "";
   bool isPincode = false;
-  DocumentReference buynowref =
-      FirebaseFirestore.instance.collection("Order").doc();
+  DocumentReference buynowref = FirebaseFirestore.instance.collection("Order").doc();
   Razorpay? razorpay;
 
   void initState() {
@@ -98,8 +90,7 @@ class _AddressDemoState extends State<AddressDemo> {
     //   House.clear();
     //   Road.clear();
     // });
-    DocumentReference docRef =
-        FirebaseFirestore.instance.collection("Order").doc();
+    DocumentReference docRef = FirebaseFirestore.instance.collection("Order").doc();
     docRef.set({
       "sellerid": widget.sid,
       "image": widget.image,
@@ -184,7 +175,7 @@ class _AddressDemoState extends State<AddressDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         name: "Product Detils",
         action: [
           TextButton(
@@ -196,7 +187,7 @@ class _AddressDemoState extends State<AddressDemo> {
               House.clear();
               Road.clear();
             },
-            child: Comman_Text(
+            child: CommonText(
               text: "Reset",
               color: white,
               //fontFamily: "JM1",
@@ -218,16 +209,15 @@ class _AddressDemoState extends State<AddressDemo> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 10.sp, top: 10.sp),
-                    child: Comman_Text(
+                    child: CommonText(
                       text: "Contact Info",
                       //fontFamily: "JM1",
                       fontSize: 18.sp,
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.sp, top: 10.sp, right: 10.sp),
-                    child: Comman_TexxtFiled(
+                    padding: EdgeInsets.only(left: 10.sp, top: 10.sp, right: 10.sp),
+                    child: CommonTextFiled(
                       keyboardType: TextInputType.number,
                       maxLength: 10,
                       fontFamily: "JM1",
@@ -237,7 +227,7 @@ class _AddressDemoState extends State<AddressDemo> {
                           return 'PhoneNo can not be empty';
                         }
                       },
-                      hinttext: "Phone Number (+91)",
+                      hintText: "Phone Number (+91)",
                     ),
                   ),
                   SizedBox(
@@ -249,7 +239,7 @@ class _AddressDemoState extends State<AddressDemo> {
                   ),
                   Padding(
                     padding: EdgeInsets.only(left: 10.sp),
-                    child: Comman_Text(
+                    child: CommonText(
                       text: "Address Info",
                       fontSize: 18.sp,
                       //fontFamily: "JM1",
@@ -262,7 +252,7 @@ class _AddressDemoState extends State<AddressDemo> {
                         child: Container(
                           height: 55.sp,
                           width: 134.sp,
-                          child: Comman_TexxtFiled(
+                          child: CommonTextFiled(
                             keyboardType: TextInputType.number,
                             maxLength: 6,
                             fontFamily: "JM1",
@@ -272,7 +262,7 @@ class _AddressDemoState extends State<AddressDemo> {
                                 setState(() {});
                               }
                             },
-                            hinttext: "PinCode",
+                            hintText: "PinCode",
                             controller: Pincode,
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -287,8 +277,8 @@ class _AddressDemoState extends State<AddressDemo> {
                         child: Container(
                           height: 55.sp,
                           width: 134.sp,
-                          child: Comman_TexxtFiled(
-                            hinttext: "City",
+                          child: CommonTextFiled(
+                            hintText: "City",
                             controller: City,
                             fontFamily: "JM1",
                             validator: (value) {
@@ -302,10 +292,9 @@ class _AddressDemoState extends State<AddressDemo> {
                     ],
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.sp, top: 10.sp, right: 10.sp),
-                    child: Comman_TexxtFiled(
-                      hinttext: "State",
+                    padding: EdgeInsets.only(left: 10.sp, top: 10.sp, right: 10.sp),
+                    child: CommonTextFiled(
+                      hintText: "State",
                       controller: STATE,
                       fontFamily: "JM1",
                       validator: (value) {
@@ -316,12 +305,11 @@ class _AddressDemoState extends State<AddressDemo> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.sp, top: 15.sp, right: 10.sp),
-                    child: Comman_TexxtFiled(
+                    padding: EdgeInsets.only(left: 10.sp, top: 15.sp, right: 10.sp),
+                    child: CommonTextFiled(
                       maxLength: 4,
                       keyboardType: TextInputType.number,
-                      hinttext: "House No., Building Name",
+                      hintText: "House No., Building Name",
                       fontFamily: "JM1",
                       controller: House,
                       validator: (value) {
@@ -332,10 +320,9 @@ class _AddressDemoState extends State<AddressDemo> {
                     ),
                   ),
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.sp, top: 15.sp, right: 10.sp),
-                    child: Comman_TexxtFiled(
-                      hinttext: "Road name, Area, Colony",
+                    padding: EdgeInsets.only(left: 10.sp, top: 15.sp, right: 10.sp),
+                    child: CommonTextFiled(
+                      hintText: "Road name, Area, Colony",
                       controller: Road,
                       fontFamily: "JM1",
                       validator: (value) {
@@ -351,7 +338,7 @@ class _AddressDemoState extends State<AddressDemo> {
                   Divider(thickness: 2, color: Colors.black54),
                   Padding(
                     padding: EdgeInsets.only(left: 10.sp, top: 10.sp),
-                    child: Comman_Text(
+                    child: CommonText(
                       text: "Type of address",
                       fontSize: 18.sp,
                       color: black,
@@ -362,8 +349,8 @@ class _AddressDemoState extends State<AddressDemo> {
                     padding: EdgeInsets.only(top: 10.sp, left: 10.sp),
                     child: Row(
                       children: List.generate(addinfo_add.length, (index) {
-                        return Comman_Container(
-                          ontap: () {
+                        return CommonContainer(
+                          onTap: () {
                             controller.AddInfo(index);
                             if (index == 0) {
                               controller.add_selected = "Home";
@@ -373,9 +360,7 @@ class _AddressDemoState extends State<AddressDemo> {
                               print("Work");
                             }
                           },
-                          color: controller.Addinfo_Selected == index
-                              ? DarkGreen
-                              : transparent,
+                          color: controller.addInfoSelected == index ? DarkGreen : transparent,
                           margin: EdgeInsets.only(left: 10.sp),
                           height: 35.sp,
                           width: 100.sp,
@@ -389,14 +374,12 @@ class _AddressDemoState extends State<AddressDemo> {
                                 width: 10.sp,
                               ),
                               Center(
-                                child: Comman_Text(
+                                child: CommonText(
                                   text: addinfo_add[index]['Name'],
                                   //fontFamily: "JM1",
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w500,
-                                  color: controller.Addinfo_Selected == index
-                                      ? white
-                                      : black,
+                                  color: controller.addInfoSelected == index ? white : black,
                                 ),
                               ),
                             ],
@@ -414,9 +397,7 @@ class _AddressDemoState extends State<AddressDemo> {
                       minWidth: double.infinity,
                       height: 55,
                       color: DarkGreen,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40),
-                          side: BorderSide.none),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40), side: BorderSide.none),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           print("validate");
@@ -434,7 +415,7 @@ class _AddressDemoState extends State<AddressDemo> {
                           // }
                         }
                       },
-                      child: Comman_Text(
+                      child: CommonText(
                         text: "Submit",
                         color: Colors.white,
                         fontSize: 20.sp,

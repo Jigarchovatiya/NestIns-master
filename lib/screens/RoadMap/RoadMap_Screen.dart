@@ -1,11 +1,10 @@
-import 'package:e_com/common_screen/Comman_TeextFiled.dart';
-import 'package:e_com/common_screen/Comman_text.dart';
+import 'package:e_com/common_screen/comman_text.dart';
+import 'package:e_com/common_screen/comman_textField.dart';
 import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:sizer/sizer.dart';
 import 'package:intl/intl.dart';
+import 'package:sizer/sizer.dart';
 
 class RoadMapScreen extends StatefulWidget {
   const RoadMapScreen({super.key});
@@ -27,8 +26,7 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
     }
 
     if (currentStep == 3) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Product Added!")));
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Product Added!")));
     }
   }
 
@@ -60,7 +58,7 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
         children: [
           OutlinedButton(
             onPressed: details.onStepCancel,
-            child: Comman_Text(
+            child: CommonText(
               text: 'Back',
               //fontFamily: "JB1",
               color: black,
@@ -72,7 +70,7 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
               backgroundColor: MaterialStateProperty.all(DarkGreen),
             ),
             onPressed: details.onStepContinue,
-            child: Comman_Text(
+            child: CommonText(
               text: 'Next',
               //fontFamily: "JB1",
             ),
@@ -85,7 +83,7 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         name: "Order Status & Tracking",
       ),
       body: Padding(
@@ -102,10 +100,10 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
               SizedBox(
                 height: 10.sp,
               ),
-              Comman_TexxtFiled(
-                labletext: "Tracking Number",
+              CommonTextFiled(
+                labelText: "Tracking Number",
                 labelStyle: TextStyle(color: DarkGreen, fontFamily: "JB1"),
-                hinttext: "E.g #120210120210",
+                hintText: "E.g #120210120210",
               ),
               SizedBox(
                 height: Get.height * 0.02,
@@ -113,7 +111,7 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Comman_Text(
+                  CommonText(
                     text: "Result:",
                     //fontFamily: "JB1",
                     fontSize: 15.sp,
@@ -130,72 +128,63 @@ class _RoadMapScreenState extends State<RoadMapScreen> {
                 currentStep: currentStep, //0, 1, 2
                 steps: [
                   Step(
-                      title: Comman_Text(
+                      title: CommonText(
                         text: 'Ordered And Approved', //fontFamily: "JB1"
                       ),
-                      subtitle: Comman_Text(
-                        text:
-                            "${DateFormat("dd-MMM-yyyy").format(currentDate)}",
+                      subtitle: CommonText(
+                        text: "${DateFormat("dd-MMM-yyyy").format(currentDate)}",
                         //fontFamily: "JM1",
                       ),
-                      content: Comman_Text(
+                      content: CommonText(
                         text: 'This is the First step.', //fontFamily: "JV1"
                       ),
                       isActive: currentStep >= 0,
-                      state: currentStep >= 0
-                          ? StepState.complete
-                          : StepState.complete),
+                      state: currentStep >= 0 ? StepState.complete : StepState.complete),
                   Step(
-                    title: Comman_Text(
+                    title: CommonText(
                       text: 'Packed',
                       // fontFamily: "JB1",
                     ),
-                    subtitle: Comman_Text(
+                    subtitle: CommonText(
                       text: "${DateFormat("dd-MMM-yyyy").format(currentDate)}",
                       //fontFamily: "JM1",
                     ),
-                    content: Comman_Text(
+                    content: CommonText(
                       text: 'This is the Second step.', //fontFamily: "JV1",
                     ),
                     isActive: currentStep >= 0,
-                    state: currentStep >= 1
-                        ? StepState.complete
-                        : StepState.disabled,
+                    state: currentStep >= 1 ? StepState.complete : StepState.disabled,
                   ),
                   Step(
-                    title: Comman_Text(
+                    title: CommonText(
                       text: 'Shipped',
                       //fontFamily: "JB1",
                     ),
-                    subtitle: Comman_Text(
+                    subtitle: CommonText(
                       text: "${DateFormat("dd-MMM-yyyy").format(currentDate)}",
                       //fontFamily: "JM1",
                     ),
-                    content: Comman_Text(
+                    content: CommonText(
                       text: 'This is the Second step.',
                       //fontFamily: "JV1",
                     ),
                     isActive: currentStep >= 0,
-                    state: currentStep >= 2
-                        ? StepState.complete
-                        : StepState.disabled,
+                    state: currentStep >= 2 ? StepState.complete : StepState.disabled,
                   ),
                   Step(
-                    title: Comman_Text(
+                    title: CommonText(
                       text: "Delivery",
                       //fontFamily: "JB1",
                     ),
-                    subtitle: Comman_Text(
+                    subtitle: CommonText(
                       text: "${DateFormat("dd-MMM-yyyy").format(currentDate)}",
                       //fontFamily: "JM1",
                     ),
-                    content: Comman_Text(
+                    content: CommonText(
                       text: "${DateFormat("dd-MM-yyyy").format(currentDate)}",
                     ),
                     isActive: currentStep >= 0,
-                    state: currentStep >= 3
-                        ? StepState.complete
-                        : StepState.disabled,
+                    state: currentStep >= 3 ? StepState.complete : StepState.disabled,
                   ),
                 ],
               ),

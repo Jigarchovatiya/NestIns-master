@@ -12,8 +12,8 @@ import 'package:sizer/sizer.dart';
 
 import '../authantication/google auth service/google_auth_service.dart';
 import '../bottom_Navigation/bottom_navi_demo.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
+import '../common_screen/common_container.dart';
 import '../common_screen/loding.dart';
 import '../globle/variable.dart';
 
@@ -66,48 +66,41 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
             ),
             Text(
               "E-mail Verification",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: Get.height * 0.038,
-                  fontFamily: "JS1"),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: Get.height * 0.038, fontFamily: "JS1"),
             ),
             SizedBox(height: Get.height * 0.015),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Text(
                 "We need to register your E-mail before getting started!",
-                style:
-                    TextStyle(fontSize: Get.height * 0.022, fontFamily: "JV1"),
+                style: TextStyle(fontSize: Get.height * 0.022, fontFamily: "JV1"),
                 textAlign: TextAlign.center,
               ),
             ),
             SizedBox(height: Get.height * 0.02),
-            Comman_Container(
+            CommonContainer(
               child: Column(
                 children: [
                   Container(
                     child: TabBar(
-                      labelPadding: EdgeInsets.symmetric(
-                          horizontal: 20.sp, vertical: 10.sp),
+                      labelPadding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 10.sp),
                       controller: tabController,
                       indicatorColor: Color(0xff2D6A4F),
                       indicatorPadding: EdgeInsets.symmetric(horizontal: 25.sp),
                       tabs: List.generate(
                         2,
                         (index) => Center(
-                          child: Comman_Text(
+                          child: CommonText(
                             text: name[index],
                             //fontFamily: "JM1",
                             fontSize: 16.sp,
-                            color: selected == index
-                                ? Color(0xff2D6A4F)
-                                : Colors.grey,
+                            color: selected == index ? Color(0xff2D6A4F) : Colors.grey,
                           ),
                         ),
                       ),
                     ),
                   ),
-                  Comman_Container(
+                  CommonContainer(
                     borderRadius: BorderRadius.circular(40),
                     color: Colors.white,
                     height: 273.sp,
@@ -137,7 +130,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
             ),
             SizedBox(height: 20.sp),
             Center(
-              child: Comman_Text(
+              child: CommonText(
                 text: "Or Sign In With",
                 color: Colors.grey,
                 //////fontFamily: "JV1",
@@ -186,7 +179,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return LodingDiloge(
+                        return LoadingDialogue(
                           message: "",
                         );
                       },
@@ -196,10 +189,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                       if (value != null) {
                         Get.back();
                         Get.off(Bottom_navigation());
-                        FirebaseFirestore.instance
-                            .collection("user")
-                            .doc(FirebaseAuth.instance.currentUser!.uid)
-                            .set({
+                        FirebaseFirestore.instance.collection("user").doc(FirebaseAuth.instance.currentUser!.uid).set({
                           "profile_image": "",
                           "profile_name": profile_name,
                           "profile_email": profile_email,
@@ -208,20 +198,15 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                           "add to cart": [],
                           "User_id": FirebaseAuth.instance.currentUser!.uid,
                         });
-                        SharedPreferences sharedPreferences =
-                            await SharedPreferences.getInstance();
-                        await sharedPreferences.setBool(
-                            Splash_ScreenState.KeyValue, true);
-                        await sharedPreferences.setString(
-                            "profile_name", profile_name!);
-                        await sharedPreferences.setString(
-                            "profile_email", profile_email!);
+                        SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+                        await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
+                        await sharedPreferences.setString("profile_name", profile_name!);
+                        await sharedPreferences.setString("profile_email", profile_email!);
                       } else {
                         Get.back();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text(
-                                "Email is already in use by another accoount"),
+                            content: Text("Email is already in use by another accoount"),
                           ),
                         );
                       }

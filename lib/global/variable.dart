@@ -1,7 +1,6 @@
 import 'dart:io';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/globle/profile_controller.dart';
+import 'package:e_com/global/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -55,23 +54,16 @@ final Road = TextEditingController();
 
 //icon
 const home_outlined = Icon(Icons.home_outlined, color: iconColor_Drawer);
-const maps_home_work_sharp =
-    Icon(Icons.maps_home_work_sharp, color: iconColor_Drawer);
-const maps_home_work_sharp_Add =
-    Icon(Icons.maps_home_work_sharp, color: LightGreen1);
+const maps_home_work_sharp = Icon(Icons.maps_home_work_sharp, color: iconColor_Drawer);
+const maps_home_work_sharp_Add = Icon(Icons.maps_home_work_sharp, color: LightGreen1);
 const home = Icon(Icons.home, color: iconColor_Drawer);
-const HomeAdd = Icon(
-  Icons.home,
-  color: LightGreen1,
-);
+const HomeAdd = Icon(Icons.home, color: LightGreen1);
 const gridview = Icon(Icons.grid_view, color: iconColor_Drawer);
 const logout = Icon(Icons.logout, color: iconColor_Drawer);
-const privacy_tip_outlined =
-    Icon(Icons.privacy_tip_outlined, color: iconColor_Drawer);
+const privacy_tip_outlined = Icon(Icons.privacy_tip_outlined, color: iconColor_Drawer);
 const share = Icon(Icons.share, color: iconColor_Drawer);
 const favorite_outline = Icon(Icons.favorite_outline, color: iconColor_Drawer);
-const shopping_cart_outlined =
-    Icon(Icons.shopping_cart_outlined, color: iconColor_Drawer);
+const shopping_cart_outlined = Icon(Icons.shopping_cart_outlined, color: iconColor_Drawer);
 
 // image app logo
 
@@ -498,10 +490,8 @@ List profile = [
   },
 ];
 
-RegExp email = RegExp(
-    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-RegExp password =
-    RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+RegExp email = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+RegExp password = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
 //categoreydemo screen
 List categoriesDemo = [
@@ -551,7 +541,7 @@ List categoriesDemo = [
 
 //comman app bar
 
-AppBar coomanAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
+AppBar CommonAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
   return AppBar(
     title: Text("${name}"),
     centerTitle: centerTitle,

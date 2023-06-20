@@ -1,5 +1,5 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:e_com/common_screen/Comman_TeextFiled.dart';
+// import 'package:e_com/common_screen/comman_textField.dart';
 // import 'package:e_com/getx/controller.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:flutter/material.dart';
@@ -7,8 +7,8 @@
 // import 'package:sizer/sizer.dart';
 // import 'package:velocity_x/velocity_x.dart';
 //
-// import '../common_screen/Comman_Container.dart';
-// import '../common_screen/Comman_text.dart';
+// import '../common_screen/common_container.dart';
+// import '../common_screen/comman_text.dart';
 // import '../globle/variable.dart';
 // import 'Details_screen.dart';
 // import 'categories_screen.dart';

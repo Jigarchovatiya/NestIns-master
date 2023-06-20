@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_text.dart';
+
+import '../common_screen/comman_text.dart';
+import '../common_screen/common_container.dart';
 import '../getx/controller.dart';
 import '../globle/variable.dart';
 import 'login_screen_h.dart';
@@ -40,7 +41,7 @@ class _On_BoardingState extends State<On_Boarding> {
                             onPressed: () {
                               Get.off(Tab_Bar());
                             },
-                            child: Comman_Text(
+                            child: CommonText(
                               text: "Skip",
                               //fontFamily: "JB1",
                               fontWeight: FontWeight.bold,
@@ -50,13 +51,13 @@ class _On_BoardingState extends State<On_Boarding> {
                       ],
                     ),
                   ),
-                  Comman_Container(
+                  CommonContainer(
                     height: 400.sp,
                     width: width,
                     child: PageView(
                       controller: pageController,
                       onPageChanged: (value) {
-                        controller.On_Bording_onchange.value = value;
+                        controller.onBoardingOnChange.value = value;
                       },
                       children: List.generate(
                         3,
@@ -69,7 +70,7 @@ class _On_BoardingState extends State<On_Boarding> {
                             SizedBox(
                               height: 45.sp,
                             ),
-                            Comman_Text(
+                            CommonText(
                               color: black,
                               text: onbording[index]['name'],
                               fontWeight: FontWeight.bold,
@@ -81,7 +82,7 @@ class _On_BoardingState extends State<On_Boarding> {
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 10),
-                              child: Comman_Text(
+                              child: CommonText(
                                 color: grey,
                                 text: onbording[index]['subtitle'],
                                 fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class _On_BoardingState extends State<On_Boarding> {
                                 fontSize: 15.sp,
                               ),
                             ),
-                            Comman_Text(
+                            CommonText(
                               color: grey,
                               text: onbording[index]['subtitle2'],
                               fontWeight: FontWeight.bold,
@@ -111,11 +112,7 @@ class _On_BoardingState extends State<On_Boarding> {
                               padding: EdgeInsets.symmetric(horizontal: 2),
                               child: CircleAvatar(
                                 radius: 5,
-                                backgroundColor:
-                                    controller.On_Bording_onchange.value ==
-                                            index
-                                        ? LightGreen
-                                        : black,
+                                backgroundColor: controller.onBoardingOnChange.value == index ? LightGreen : black,
                               ),
                             )),
                   ),
@@ -127,17 +124,13 @@ class _On_BoardingState extends State<On_Boarding> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        controller.On_Bording_onchange.value == 1 ||
-                                controller.On_Bording_onchange.value == 2
+                        controller.onBoardingOnChange.value == 1 || controller.onBoardingOnChange.value == 2
                             ? Container(
                                 child: InkWell(
                                   onTap: () {
-                                    pageController.previousPage(
-                                        duration: Duration(milliseconds: 300),
-                                        curve: Curves.easeIn);
+                                    pageController.previousPage(duration: Duration(milliseconds: 300), curve: Curves.easeIn);
                                   },
-                                  child: Icon(Icons.arrow_back,
-                                      color: white, size: 27),
+                                  child: Icon(Icons.arrow_back, color: white, size: 27),
                                 ),
                                 height: 45.sp,
                                 width: 45.sp,
@@ -150,16 +143,13 @@ class _On_BoardingState extends State<On_Boarding> {
                         Container(
                           child: InkWell(
                             onTap: () {
-                              if (controller.On_Bording_onchange.value == 2) {
+                              if (controller.onBoardingOnChange.value == 2) {
                                 Get.off(Tab_Bar());
                               } else {
-                                pageController.nextPage(
-                                    duration: Duration(milliseconds: 600),
-                                    curve: Curves.easeIn);
+                                pageController.nextPage(duration: Duration(milliseconds: 600), curve: Curves.easeIn);
                               }
                             },
-                            child: Icon(Icons.arrow_forward,
-                                color: white, size: 27),
+                            child: Icon(Icons.arrow_forward, color: white, size: 27),
                           ),
                           height: 45.sp,
                           width: 45.sp,

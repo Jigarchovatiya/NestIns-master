@@ -1,16 +1,13 @@
 import 'dart:async';
+
 import 'package:e_com/screens/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sizer/sizer.dart';
+
 import '../bottom_Navigation/bottom_navi_demo.dart';
-import '../bottom_Navigation/bottom_NAV.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_text.dart';
+import '../common_screen/common_container.dart';
 import '../globle/variable.dart';
-import 'bottom_navigation_screen.dart';
 
 class Splash_Screen extends StatefulWidget {
   const Splash_Screen({Key? key}) : super(key: key);
@@ -20,11 +17,11 @@ class Splash_Screen extends StatefulWidget {
 }
 
 class Splash_ScreenState extends State<Splash_Screen> {
-  Future Getusername() async {
+  Future GetUserName() async {
     var sh = await SharedPreferences.getInstance();
     var IsLoggedIn = sh.getBool(KeyValue);
 
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 5), () {
       if (IsLoggedIn != null) {
         if (IsLoggedIn) {
           Get.off(Bottom_navigation());
@@ -40,7 +37,7 @@ class Splash_ScreenState extends State<Splash_Screen> {
   static const String KeyValue = "Login";
   @override
   void initState() {
-    Getusername();
+    GetUserName();
     super.initState();
   }
 
@@ -50,7 +47,7 @@ class Splash_ScreenState extends State<Splash_Screen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Comman_Container(
+          CommonContainer(
             height: Get.height,
             width: Get.width,
             color: black,

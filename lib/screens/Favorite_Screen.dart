@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_Container.dart';
+import 'package:e_com/common_screen/common_container.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../common_screen/Comman_text.dart';
+
+import '../common_screen/comman_text.dart';
 import '../globle/variable.dart';
 
 class Favorite_Screen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         //centerTitle: true,
         action: [],
         name: "Favourite",
@@ -102,32 +102,22 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
             //   ),
             // ),
             StreamBuilder(
-              stream: FirebaseFirestore.instance
-                  .collection('user')
-                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                  .snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snap) {
+              stream: FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).snapshots(),
+              builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snap) {
                 if (snap.hasData) {
                   return StreamBuilder(
-                    stream: FirebaseFirestore.instance
-                        .collection('Product')
-                        .snapshots(),
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                            snapshot) {
+                    stream: FirebaseFirestore.instance.collection('Product').snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                       if (snapshot.hasData) {
                         return snapshot.data!.docs.isNotEmpty
                             ? Expanded(
                                 child: ListView.builder(
                                   physics: BouncingScrollPhysics(),
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 15.sp, horizontal: 10.sp),
+                                  padding: EdgeInsets.symmetric(vertical: 15.sp, horizontal: 10.sp),
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
                                     var data = snapshot.data!.docs;
-                                    if ((snap.data!['favourite'] as List)
-                                        .contains(data[index].id)) {
+                                    if ((snap.data!['favourite'] as List).contains(data[index].id)) {
                                       return Column(
                                         children: [
                                           SizedBox(
@@ -137,39 +127,23 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
                                             children: [
                                               Card(
                                                 elevation: 5,
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10)),
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                                                 child: Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
                                                   children: [
                                                     ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10),
+                                                      borderRadius: BorderRadius.circular(10),
                                                       child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical: 10,
-                                                                horizontal: 10),
-                                                        child: Comman_Container(
-                                                          height:
-                                                              Get.height * 0.18,
-                                                          width:
-                                                              Get.width * 0.40,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(10),
-                                                          image:
-                                                              DecorationImage(
-                                                                  image:
-                                                                      NetworkImage(
-                                                                    '${data[index]['image']}',
-                                                                  ),
-                                                                  fit: BoxFit
-                                                                      .cover),
+                                                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                                                        child: CommonContainer(
+                                                          height: Get.height * 0.18,
+                                                          width: Get.width * 0.40,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          image: DecorationImage(
+                                                              image: NetworkImage(
+                                                                '${data[index]['image']}',
+                                                              ),
+                                                              fit: BoxFit.cover),
                                                         ),
                                                       ),
                                                     ),
@@ -178,27 +152,20 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
                                                     ),
                                                     Flexible(
                                                       child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .start,
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
                                                         children: [
-                                                          Comman_Text(
-                                                            text:
-                                                                '${data[index]['product_name']}',
+                                                          CommonText(
+                                                            text: '${data[index]['product_name']}',
                                                             fontSize: 15.sp,
                                                             ////fontFamily: "JV1",
-                                                            fontWeight:
-                                                                FontWeight.w500,
+                                                            fontWeight: FontWeight.w500,
                                                           ),
                                                           SizedBox(
                                                             height: 2.sp,
                                                           ),
-                                                          Comman_Text(
-                                                            text:
-                                                                '${data[index]['product_catagory']}',
+                                                          CommonText(
+                                                            text: '${data[index]['product_catagory']}',
                                                             fontSize: 15.sp,
                                                             //fontFamily: "JV1",
                                                             color: grey,
@@ -206,9 +173,8 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
                                                           SizedBox(
                                                             height: 2.sp,
                                                           ),
-                                                          Comman_Text(
-                                                            text:
-                                                                '₹ ${data[index]['product_price']}',
+                                                          CommonText(
+                                                            text: '₹ ${data[index]['product_price']}',
                                                             fontSize: 15.sp,
                                                             //fontFamily: "JV1",
                                                             color: red,
@@ -232,60 +198,23 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
                                                 child: IconButton(
                                                   splashRadius: 20,
                                                   onPressed: () {
-                                                    List x =
-                                                        snap.data!['favourite'];
-                                                    if ((snap.data!['favourite']
-                                                            as List)
-                                                        .contains(
-                                                            data[index].id)) {
+                                                    List x = snap.data!['favourite'];
+                                                    if ((snap.data!['favourite'] as List).contains(data[index].id)) {
                                                       x.remove(data[index].id);
-                                                      FirebaseFirestore.instance
-                                                          .collection('user')
-                                                          .doc(FirebaseAuth
-                                                              .instance
-                                                              .currentUser!
-                                                              .uid)
-                                                          .update(
-                                                              {'favourite': x});
+                                                      FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).update({'favourite': x});
                                                     } else {
                                                       x.add(data[index].id);
-                                                      FirebaseFirestore.instance
-                                                          .collection('user')
-                                                          .doc(FirebaseAuth
-                                                              .instance
-                                                              .currentUser!
-                                                              .uid)
-                                                          .update(
-                                                              {'favourite': x});
+                                                      FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).update({'favourite': x});
                                                     }
                                                   },
-                                                  icon: (snap.data!['favourite']
-                                                                  as List)
-                                                              .contains(
-                                                                  data[index]
-                                                                      .id) ==
-                                                          true
+                                                  icon: (snap.data!['favourite'] as List).contains(data[index].id) == true
                                                       ? Icon(
                                                           Icons.favorite,
-                                                          color: (snap.data![
-                                                                          'favourite']
-                                                                      as List)
-                                                                  .contains(
-                                                                      data[index]
-                                                                          .id)
-                                                              ? red
-                                                              : grey,
+                                                          color: (snap.data!['favourite'] as List).contains(data[index].id) ? red : grey,
                                                         )
                                                       : Icon(
                                                           Icons.favorite,
-                                                          color: (snap.data![
-                                                                          'favourite']
-                                                                      as List)
-                                                                  .contains(
-                                                                      data[index]
-                                                                          .id)
-                                                              ? red
-                                                              : grey,
+                                                          color: (snap.data!['favourite'] as List).contains(data[index].id) ? red : grey,
                                                         ),
                                                 ),
                                               )

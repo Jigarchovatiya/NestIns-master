@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_Container.dart';
+import 'package:e_com/common_screen/common_container.dart';
 import 'package:e_com/globle/media_query.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
 import '../globle/variable.dart';
 import 'addressscreen.dart';
 
@@ -91,25 +89,17 @@ class DetilsScreenState extends State<DetilsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         name: "Details",
       ),
       body: SafeArea(
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('user')
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .snapshots(),
-          builder: (BuildContext context,
-              AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+          stream: FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
             if (snapshot.hasData) {
               return StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('Product')
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                        snapshot) {
+                stream: FirebaseFirestore.instance.collection('Product').snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                   if (snapshot.hasData) {
                     var data = snapshot.data!.docs;
                     return Column(
@@ -117,8 +107,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, right: 10, top: 2, bottom: 5),
+                            padding: const EdgeInsets.only(left: 10, right: 10, top: 2, bottom: 5),
                             child: SingleChildScrollView(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,14 +117,11 @@ class DetilsScreenState extends State<DetilsScreen> {
                                     children: [
                                       Expanded(
                                         child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                          borderRadius: BorderRadius.circular(20),
                                           child: Container(
                                             height: 400.sp,
                                             width: 250.sp,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
                                             child: Image.network(
                                               widget.image,
                                               // height: height(context) / 3,
@@ -151,15 +137,13 @@ class DetilsScreenState extends State<DetilsScreen> {
                                     height: height(context) * 0.01,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
-                                            Comman_Text(
+                                            CommonText(
                                               text: "Product Name :",
                                               color: black,
                                               fontSize: height(context) / 40,
@@ -170,7 +154,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                               width: 8.sp,
                                             ),
                                             Flexible(
-                                              child: Comman_Text(
+                                              child: CommonText(
                                                 text: "${widget.name}",
                                                 color: grey,
                                                 fontSize: height(context) / 40,
@@ -184,7 +168,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            Comman_Text(
+                                            CommonText(
                                               text: "Rs :",
                                               color: black,
                                               fontSize: height(context) / 40,
@@ -194,7 +178,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                             SizedBox(
                                               width: 10,
                                             ),
-                                            Comman_Text(
+                                            CommonText(
                                               text: "${widget.price}₹",
                                               color: red,
                                               fontSize: height(context) / 40,
@@ -208,7 +192,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            Comman_Text(
+                                            CommonText(
                                               text: "Category:",
                                               color: black,
                                               fontSize: height(context) / 40,
@@ -219,7 +203,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                               width: 5.sp,
                                             ),
                                             Flexible(
-                                              child: Comman_Text(
+                                              child: CommonText(
                                                 text: "${widget.category}",
                                                 color: grey,
                                                 fontSize: height(context) / 40,
@@ -233,10 +217,9 @@ class DetilsScreenState extends State<DetilsScreen> {
                                           height: height(context) * 0.01,
                                         ),
                                         Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
-                                            Comman_Text(
+                                            CommonText(
                                               text: "Product Descripation :",
                                               color: black,
                                               fontSize: height(context) / 40,
@@ -246,7 +229,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                             SizedBox(
                                               width: 5.sp,
                                             ),
-                                            Comman_Text(
+                                            CommonText(
                                               text: "${widget.details}",
                                               color: grey,
                                               fontSize: height(context) / 40,
@@ -260,7 +243,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            Comman_Text(
+                                            CommonText(
                                               text: "Product Rating:",
                                               color: black,
                                               fontSize: height(context) / 40,
@@ -285,12 +268,10 @@ class DetilsScreenState extends State<DetilsScreen> {
                                         ),
                                         SizedBox(
                                           child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Comman_Container(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.sp),
+                                              CommonContainer(
+                                                borderRadius: BorderRadius.circular(5.sp),
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color: grey,
@@ -302,17 +283,16 @@ class DetilsScreenState extends State<DetilsScreen> {
                                                 height: 40.sp,
                                                 width: double.infinity,
                                                 child: Center(
-                                                  child: Comman_Text(
+                                                  child: CommonText(
                                                     color: white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        height(context) / 40,
+                                                    fontSize: height(context) / 40,
                                                     text: "Add to card",
                                                     //fontFamily: "JV1",
                                                   ),
                                                 ),
                                                 color: red,
-                                                ontap: () {
+                                                onTap: () {
                                                   // List a = widget.AddToCart;
                                                   // if ((a).contains(widget.pid)) {
                                                   // } else {
@@ -324,11 +304,9 @@ class DetilsScreenState extends State<DetilsScreen> {
                                                   //       .update({'AddToCart': a});
                                                   // }
 
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(
+                                                  ScaffoldMessenger.of(context).showSnackBar(
                                                     SnackBar(
-                                                      content:
-                                                          Text("Add To Cart"),
+                                                      content: Text("Add To Cart"),
                                                     ),
                                                   );
                                                 },
@@ -336,9 +314,8 @@ class DetilsScreenState extends State<DetilsScreen> {
                                               SizedBox(
                                                 height: 10.sp,
                                               ),
-                                              Comman_Container(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.sp),
+                                              CommonContainer(
+                                                borderRadius: BorderRadius.circular(5.sp),
                                                 boxShadow: [
                                                   BoxShadow(
                                                     color: grey,
@@ -350,29 +327,26 @@ class DetilsScreenState extends State<DetilsScreen> {
                                                 height: 40.sp,
                                                 width: double.maxFinite,
                                                 child: Center(
-                                                  child: Comman_Text(
+                                                  child: CommonText(
                                                     color: white,
                                                     fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        height(context) / 40,
+                                                    fontSize: height(context) / 40,
                                                     text: "Buy Now",
                                                     //fontFamily: "JV1",
                                                   ),
                                                 ),
                                                 color: DarkGreen,
-                                                ontap: () {
+                                                onTap: () {
                                                   print("Address Screen");
                                                   Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          AddressDemo(
+                                                      builder: (context) => AddressDemo(
                                                         sid: widget.sid,
                                                         pid: widget.pid,
                                                         pprice: widget.price,
                                                         image: widget.image,
-                                                        category:
-                                                            widget.category,
+                                                        category: widget.category,
                                                         details: widget.details,
                                                         name: widget.name,
                                                         price: widget.price,

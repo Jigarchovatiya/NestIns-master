@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Comman_Container extends StatelessWidget {
-  const Comman_Container({
+class CommonContainer extends StatelessWidget {
+  const CommonContainer({
     Key? key,
     this.width,
     this.child,
@@ -12,7 +12,7 @@ class Comman_Container extends StatelessWidget {
     this.border,
     this.borderRadius,
     this.boxShadow,
-    this.ontap,
+    this.onTap,
     this.margin,
     this.alignment,
   }) : super(key: key);
@@ -28,11 +28,11 @@ class Comman_Container extends StatelessWidget {
   final BoxBorder? border;
   final BorderRadiusGeometry? borderRadius;
   final boxShadow;
-  final void Function()? ontap;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: onTap,
       child: Container(
         alignment: alignment,
         width: width,

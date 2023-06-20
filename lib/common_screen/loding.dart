@@ -1,11 +1,11 @@
-import 'package:e_com/common_screen/Comman_text.dart';
+import 'package:e_com/common_screen/comman_text.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import 'Comman_Container.dart';
+import 'common_container.dart';
 
-class LodingDiloge extends StatelessWidget {
-  const LodingDiloge({Key? key, this.message}) : super(key: key);
+class LoadingDialogue extends StatelessWidget {
+  const LoadingDialogue({Key? key, this.message}) : super(key: key);
 
   final String? message;
   @override
@@ -18,7 +18,7 @@ class LodingDiloge extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(top: 14.sp),
             // circular progress bar
-            child: Comman_Container(
+            child: CommonContainer(
                 alignment: Alignment.center,
                 child: const CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation(Colors.green),
@@ -27,7 +27,7 @@ class LodingDiloge extends StatelessWidget {
           SizedBox(
             height: 10.sp,
           ),
-          Comman_Text(
+          CommonText(
             text: message.toString() + " Please wait...",
           )
         ],

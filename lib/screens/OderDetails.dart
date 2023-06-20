@@ -3,10 +3,9 @@ import 'package:e_com/globle/media_query.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:sizer/sizer.dart';
 
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
 import '../getx/controller.dart';
 import '../globle/variable.dart';
 import 'addressscreen.dart';
@@ -42,7 +41,7 @@ class OderDetailsState extends State<OderDetails> {
             color: white,
           ),
         ),
-        title: Comman_Text(
+        title: CommonText(
           text: "Order Details",
           fontSize: 19,
           fontWeight: FontWeight.bold,
@@ -89,20 +88,12 @@ class OderDetailsState extends State<OderDetails> {
       ),
       body: SafeArea(
         child: StreamBuilder(
-          stream: FirebaseFirestore.instance
-              .collection('user')
-              .doc(FirebaseAuth.instance.currentUser!.uid)
-              .snapshots(),
-          builder: (BuildContext context,
-              AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
+          stream: FirebaseFirestore.instance.collection('user').doc(FirebaseAuth.instance.currentUser!.uid).snapshots(),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot<Map<String, dynamic>>> snapshot) {
             if (!snapshot.hasData) {
               return StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('Product')
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>>
-                        snapshot) {
+                stream: FirebaseFirestore.instance.collection('Product').snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
                   if (!snapshot.hasData) {
                     return Text("Hello");
                   }
@@ -131,13 +122,11 @@ class OderDetailsState extends State<OderDetails> {
                                     height: height(context) * 0.02,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20),
+                                    padding: const EdgeInsets.symmetric(horizontal: 20),
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Comman_Text(
+                                        CommonText(
                                           text: "${widget.name}",
                                           color: black,
                                           //fontFamily: "JV1",
@@ -147,7 +136,7 @@ class OderDetailsState extends State<OderDetails> {
                                         SizedBox(
                                           height: height(context) * 0.02,
                                         ),
-                                        Comman_Text(
+                                        CommonText(
                                           text: "₨ :- ${widget.price}",
                                           color: grey,
                                           fontSize: height(context) / 35,
@@ -156,7 +145,7 @@ class OderDetailsState extends State<OderDetails> {
                                         SizedBox(
                                           height: height(context) * 0.02,
                                         ),
-                                        Comman_Text(
+                                        CommonText(
                                           text: "${widget.category}",
                                           color: grey,
                                           fontSize: height(context) / 35,
@@ -165,7 +154,7 @@ class OderDetailsState extends State<OderDetails> {
                                         SizedBox(
                                           height: height(context) * 0.02,
                                         ),
-                                        Comman_Text(
+                                        CommonText(
                                           text: "${widget.details}",
                                           color: grey,
                                           fontSize: height(context) / 35,
@@ -174,7 +163,7 @@ class OderDetailsState extends State<OderDetails> {
                                         SizedBox(
                                           height: height(context) * 0.02,
                                         ),
-                                        Comman_Text(
+                                        CommonText(
                                           text: "${widget.date}",
                                           color: grey,
                                           fontSize: height(context) / 35,

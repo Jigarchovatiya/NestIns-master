@@ -1,27 +1,23 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class EmailAuthServices {
-  static Future<UserCredential?> signUpUser(
-      {String? email, String? password}) async {
+  static Future<UserCredential?> signUpUser({String? email, String? password}) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email!, password: password!);
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email!, password: password!);
 
       return userCredential;
     } on FirebaseAuthException catch (e) {
-      print('SIGN UP ERRRO++>>${e.message}');
+      print('SIGN UP ERROR++>>${e.message}');
     }
   }
 
-  static Future<UserCredential?> loginUser(
-      {String? email, String? password}) async {
+  static Future<UserCredential?> loginUser({String? email, String? password}) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email!, password: password!);
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email!, password: password!);
 
       return userCredential;
     } on FirebaseAuthException catch (e) {
-      print('SIGN IN ERRRO++>>${e.message}');
+      print('SIGN IN ERROR++>>${e.message}');
     }
   }
 
@@ -31,7 +27,7 @@ class EmailAuthServices {
       print(FirebaseAuth.instance.currentUser!.uid);
       FirebaseAuth.instance.signOut();
     } on FirebaseAuthException catch (e) {
-      print('SIGN OUT ERRRO++>>${e.message}');
+      print('SIGN OUT ERROR++>>${e.message}');
     }
   }
 }

@@ -1,11 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import 'package:e_com/globle/variable.dart';
-import '../catdata.dart';
+
 import '../category/Goa_dangar_topi.dart';
 import '../category/Goa_kunbi_saree.dart';
 import '../category/Goa_pano_bhaju.dart';
@@ -20,9 +17,7 @@ import '../category/chhattisgarh_saree.dart';
 import '../category/haryana_dhoti.dart';
 import '../category/haryana_ghaghra_choli.dart';
 import '../category/haryana_kurta_payjama.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_text.dart';
-import '../globle/variable.dart';
+import '../common_screen/comman_text.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);
@@ -35,7 +30,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(name: "Category"),
+      appBar: CommonAppBar(name: "Category"),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.sp),
         child: Column(
@@ -205,39 +200,33 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       width: Get.width * 0.6,
                       decoration: BoxDecoration(
                           // color: white,
-                          gradient:
-                              LinearGradient(colors: [DarkGreen2, LightGreen]),
-                          boxShadow: [
-                            BoxShadow(
-                                color: grey,
-                                blurRadius: 4,
-                                offset: Offset(2, 2))
-                          ],
+                          gradient: LinearGradient(colors: [DarkGreen2, LightGreen]),
+                          boxShadow: [BoxShadow(color: grey, blurRadius: 4, offset: Offset(2, 2))],
                           borderRadius: BorderRadius.circular(13)),
                       child: ListTile(
                         onTap: () {
                           if (index == 0) {
-                            Get.to(chhattisgarh_dhoti_kurta());
+                            Get.to(ChattisgarhDhotiKurta());
                           } else if (index == 1) {
-                            Get.to(chhattisgarh_paghadi());
+                            Get.to(ChhattisgarhPaghadi());
                           } else if (index == 2) {
                             Get.to(chhattisgarh_saree());
                           } else if (index == 3) {
-                            Get.to(Goa_dangar_topi());
+                            Get.to(GoaDangarTopi());
                           } else if (index == 4) {
-                            Get.to(Goa_kunbi_saree());
+                            Get.to(GoaKunbiSaree());
                           } else if (index == 5) {
-                            Get.to(Goa_pano_bhaju());
+                            Get.to(GoaPanoBhaju());
                           } else if (index == 6) {
-                            Get.to(Gujrat_bandhani());
+                            Get.to(GujaratBandhani());
                           } else if (index == 7) {
-                            Get.to(Gujrat_chaniyacoli());
+                            Get.to(GujaratChaniyacholi());
                           } else if (index == 8) {
-                            Get.to(Gujrat_ghaghra());
+                            Get.to(GujaratGhaghra());
                           } else if (index == 9) {
-                            Get.to(Gujrat_kediyu());
+                            Get.to(GujaratKediyu());
                           } else if (index == 10) {
-                            Get.to(Gujrat_patola());
+                            Get.to(GujaratPatola());
                           } else if (index == 11) {
                             Get.to(haryana_dhoti());
                           } else if (index == 12) {
@@ -250,7 +239,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           Icons.arrow_forward_ios,
                           color: white,
                         ),
-                        leading: Comman_Text(
+                        leading: CommonText(
                           //fontFamily: "JV1",
                           text: categoriesDemo[index]['name'],
                           fontSize: 15.sp,

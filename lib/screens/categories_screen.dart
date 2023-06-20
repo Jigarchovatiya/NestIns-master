@@ -1,11 +1,9 @@
-import 'package:e_com/common_screen/Comman_TeextFiled.dart';
-import 'package:e_com/screens/home_screen.dart';
+import 'package:e_com/common_screen/comman_textField.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../common_screen/Comman_Container.dart';
-import '../common_screen/Comman_text.dart';
+
+import '../common_screen/comman_text.dart';
+import '../common_screen/common_container.dart';
 import '../globle/variable.dart';
 
 class CategoryScreen_2 extends StatefulWidget {
@@ -19,7 +17,7 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: coomanAppBar(
+      appBar: CommonAppBar(
         action: [],
         //centerTitle: true,
         name: "Categories",
@@ -75,15 +73,15 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
             SizedBox(
               height: 10.sp,
             ),
-            Comman_TexxtFiled(
-              hinttext: "Search",
+            CommonTextFiled(
+              hintText: "Search",
               controller: search,
-              ontap: () {},
+              onTap: () {},
               onChanged: (p0) {
                 searchText = p0;
                 setState(() {});
               },
-              prefixicon: Icon(
+              prefixIcon: Icon(
                 Icons.search_rounded,
               ),
             ),
@@ -99,14 +97,14 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.all(11.0),
-                        child: Comman_Container(
+                        child: CommonContainer(
                           color: lightGreen,
                           borderRadius: BorderRadius.circular(10),
                           child: ExpansionTile(
                             onExpansionChanged: (value) {},
                             title: Row(
                               children: [
-                                Comman_Text(
+                                CommonText(
                                   text: categories[index]['title'],
                                   color: black,
                                   fontSize: 14.sp,
@@ -116,7 +114,7 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
                                 )
                               ],
                             ),
-                            subtitle: Comman_Text(
+                            subtitle: CommonText(
                               text: categories[index]['subtitle'],
                               color: black,
                               fontSize: 11.sp,
@@ -128,7 +126,7 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
                               fit: BoxFit.fill,
                             ),
                             children: [
-                              Comman_Container(
+                              CommonContainer(
                                 color: white,
                                 borderRadius: BorderRadius.only(
                                   bottomRight: Radius.circular(10),
@@ -140,13 +138,10 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
                                     (index1) => Padding(
                                       padding: const EdgeInsets.all(6.0),
                                       child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Comman_Text(
-                                            text: In_details[index]['cat']
-                                                    [index1]
-                                                .toString(),
+                                          CommonText(
+                                            text: In_details[index]['cat'][index1].toString(),
                                           ),
                                           Icon(
                                             Icons.arrow_forward_ios,

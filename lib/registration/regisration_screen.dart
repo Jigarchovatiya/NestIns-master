@@ -7,7 +7,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
 import '../globle/variable.dart';
 import 'otp_screen.dart';
 
@@ -44,7 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       verificationFailed: (error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Comman_Text(
+            content: CommonText(
               text: error.message.toString(),
             ),
           ),
@@ -81,9 +81,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 SizedBox(height: Get.height * 0.03),
                 Text(
                   "Phone Verification",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: Get.height * 0.038),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: Get.height * 0.038),
                 ),
                 SizedBox(height: Get.height * 0.03),
                 Text(
@@ -130,8 +128,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onTap: () {
                             showCountryPicker(
                               context: context,
-                              showPhoneCode:
-                                  true, // optional. Shows phone code before the country name.
+                              showPhoneCode: true, // optional. Shows phone code before the country name.
                               onSelect: (Country country) {
                                 setState(() {
                                   countryCodee = country.phoneCode;
@@ -250,8 +247,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: DarkGreen2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     child: Text(
                       "Send   The Code",

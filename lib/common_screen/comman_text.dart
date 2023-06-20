@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Comman_Text extends StatelessWidget {
-  const Comman_Text(
+class CommonText extends StatelessWidget {
+  const CommonText(
       {Key? key,
       this.text,
       this.color,

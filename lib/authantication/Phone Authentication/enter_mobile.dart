@@ -1,13 +1,12 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:e_com/authantication/Phone%20Authentication/verfiy_otp.dart';
-import 'package:e_com/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../common_screen/Comman_Container.dart';
-import '../../common_screen/Comman_TeextFiled.dart';
-import '../../common_screen/Comman_text.dart';
+import '../../common_screen/comman_text.dart';
+import '../../common_screen/comman_textField.dart';
+import '../../common_screen/common_container.dart';
 
 String? phone;
 String? verificationCode;
@@ -19,17 +18,17 @@ class Enter_mobile extends StatefulWidget {
 
 class _Enter_mobileState extends State<Enter_mobile> {
   String countryCode = "91";
-  String countryFlage = "";
-  final phoneno = TextEditingController();
+  String countryFlag = "";
+  final phoneNo = TextEditingController();
   final gloablekey = GlobalKey<FormState>();
   Future sendOtpService() async {
     FirebaseAuth.instance.verifyPhoneNumber(
-      phoneNumber: "+91${phoneno.text}",
+      phoneNumber: "+91${phoneNo.text}",
       verificationCompleted: (phoneAuthCredential) {},
       verificationFailed: (error) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Comman_Text(
+            content: CommonText(
               text: error.message.toString(),
             ),
           ),
@@ -62,10 +61,9 @@ class _Enter_mobileState extends State<Enter_mobile> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Comman_Text(
+                child: CommonText(
                   color: Colors.grey,
-                  text:
-                      "Please enter your phone number to\nverify your account",
+                  text: "Please enter your phone number to\nverify your account",
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
@@ -74,13 +72,12 @@ class _Enter_mobileState extends State<Enter_mobile> {
                 height: 50,
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: Comman_TexxtFiled(
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: CommonTextFiled(
                   keyboardType: TextInputType.phone,
-                  labletext: "Enter Number",
-                  hinttext: "Enter number",
-                  controller: phoneno,
+                  labelText: "Enter Number",
+                  hintText: "Enter number",
+                  controller: phoneNo,
                   maxLength: 10,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -92,10 +89,8 @@ class _Enter_mobileState extends State<Enter_mobile> {
                       gloablekey.currentState!.validate();
                     });
                   },
-                  sufficicon: phoneno.text.length == 10
-                      ? Icon(Icons.check_circle, color: Colors.green)
-                      : SizedBox(),
-                  prefixicon: Padding(
+                  suffixIcon: phoneNo.text.length == 10 ? Icon(Icons.check_circle, color: Colors.green) : SizedBox(),
+                  prefixIcon: Padding(
                     padding: const EdgeInsets.only(left: 15, top: 0, right: 10),
                     child: InkWell(
                       onTap: () {
@@ -104,10 +99,8 @@ class _Enter_mobileState extends State<Enter_mobile> {
                           countryListTheme: CountryListThemeData(
                             flagSize: 25,
                             backgroundColor: Colors.white,
-                            textStyle:
-                                TextStyle(fontSize: 16, color: Colors.blueGrey),
-                            bottomSheetHeight:
-                                500, // Optional. Country list modal height
+                            textStyle: TextStyle(fontSize: 16, color: Colors.blueGrey),
+                            bottomSheetHeight: 500, // Optional. Country list modal height
                             //Optional. Sets the border radius for the bottomsheet.
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(20.0),
@@ -120,8 +113,7 @@ class _Enter_mobileState extends State<Enter_mobile> {
                               prefixIcon: const Icon(Icons.search),
                               border: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                  color:
-                                      const Color(0xFF8C98A8).withOpacity(0.2),
+                                  color: const Color(0xFF8C98A8).withOpacity(0.2),
                                 ),
                               ),
                             ),
@@ -130,7 +122,7 @@ class _Enter_mobileState extends State<Enter_mobile> {
                           onSelect: (Country country) {
                             setState(() {
                               countryCode = country.phoneCode;
-                              countryFlage = country.flagEmoji;
+                              countryFlag = country.flagEmoji;
                             });
                           },
                         );
@@ -139,7 +131,7 @@ class _Enter_mobileState extends State<Enter_mobile> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text("+${countryCode}"),
-                          Text(countryFlage.isEmpty ? "" : countryFlage),
+                          Text(countryFlag.isEmpty ? "" : countryFlag),
                         ],
                       ),
                     ),
@@ -151,8 +143,8 @@ class _Enter_mobileState extends State<Enter_mobile> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Comman_Container(
-                  ontap: () {
+                child: CommonContainer(
+                  onTap: () {
                     if (gloablekey.currentState!.validate()) {
                       print("validation");
                       sendOtpService().then(
@@ -166,7 +158,7 @@ class _Enter_mobileState extends State<Enter_mobile> {
                     }
                   },
                   child: Center(
-                    child: Comman_Text(
+                    child: CommonText(
                       text: "Send Verification Code",
                       fontSize: 18,
                       color: Colors.white,

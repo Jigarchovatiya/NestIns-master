@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
-class Comman_TexxtFiled extends StatelessWidget {
-  const Comman_TexxtFiled({
+class CommonTextFiled extends StatelessWidget {
+  const CommonTextFiled({
     Key? key,
-    this.ontap,
+    this.onTap,
     this.onChanged,
     this.maxLength,
     this.border,
     this.obscureText = false,
     this.keyboardType,
     this.controller,
-    this.hinttext,
-    this.labletext,
+    this.hintText,
+    this.labelText,
     this.counter,
-    this.fillcolor,
-    this.prefixicon,
-    this.sufficicon,
+    this.fillColor,
+    this.prefixIcon,
+    this.suffixIcon,
     this.filled,
     this.validator,
     this.labelStyle,
     this.fontFamily,
-    this.HintfontFamily,
+    this.hintFontFamily,
   }) : super(key: key);
-  final void Function()? ontap;
+  final void Function()? onTap;
   final void Function(String)? onChanged;
   final maxLength;
   final InputBorder? border;
@@ -30,14 +30,14 @@ class Comman_TexxtFiled extends StatelessWidget {
   final bool obscureText;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
-  final hinttext;
-  final labletext;
+  final hintText;
+  final labelText;
   final fontFamily;
-  final HintfontFamily;
+  final hintFontFamily;
   final counter;
-  final fillcolor;
-  final prefixicon;
-  final sufficicon;
+  final fillColor;
+  final prefixIcon;
+  final suffixIcon;
   final labelStyle;
   final bool? filled;
 
@@ -46,7 +46,7 @@ class Comman_TexxtFiled extends StatelessWidget {
     return TextFormField(
       style: TextStyle(fontFamily: fontFamily),
       validator: validator,
-      onTap: ontap,
+      onTap: onTap,
       keyboardType: keyboardType,
       controller: controller,
       maxLength: maxLength,
@@ -69,15 +69,15 @@ class Comman_TexxtFiled extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         border: border,
-        hintText: hinttext,
-        hintStyle: TextStyle(fontFamily: HintfontFamily),
-        labelText: labletext,
+        hintText: hintText,
+        hintStyle: TextStyle(fontFamily: hintFontFamily),
+        labelText: labelText,
         labelStyle: labelStyle,
         counter: counter,
         filled: filled,
-        suffixIcon: sufficicon,
-        prefixIcon: prefixicon,
-        fillColor: fillcolor,
+        suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
+        fillColor: fillColor,
         counterText: "",
       ),
     );

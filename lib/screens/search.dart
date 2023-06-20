@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/common_screen/Comman_TeextFiled.dart';
+import 'package:e_com/common_screen/comman_textField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../common_screen/Comman_text.dart';
+import '../common_screen/comman_text.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -14,10 +14,7 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   void search(String que) async {
-    final result = await FirebaseFirestore.instance
-        .collection("Product")
-        .where('product_name', arrayContains: que)
-        .get();
+    final result = await FirebaseFirestore.instance.collection("Product").where('product_name', arrayContains: que).get();
 
     searchresult = result.docs.map((e) => e.data()).toList();
     setState(() {});
@@ -32,23 +29,22 @@ class _SearchState extends State<Search> {
         child: Column(
           children: [
             SizedBox(height: Get.height * 0.1),
-            Comman_TexxtFiled(
+            CommonTextFiled(
               onChanged: (query) {
                 search(query);
               },
-              hinttext: "Search",
+              hintText: "Search",
             ),
             Expanded(
               child: ListView.builder(
                 itemCount: searchresult.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Comman_Text(
+                    title: CommonText(
                       //fontFamily: "JV1",
                       text: searchresult[index]["product_name"],
                     ),
-                    subtitle: Comman_Text(
-                        text: searchresult[index]["product_catagory"]),
+                    subtitle: CommonText(text: searchresult[index]["product_catagory"]),
                   );
                 },
               ),

@@ -1,37 +1,35 @@
 import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class Controller extends GetxController {
   File? image;
-  int Addinfo_Selected = 0;
+  int addInfoSelected = 0;
   String add_selected = "";
   bool like_btn = false;
   int onchange = 0;
   RxInt selectedScreen = 0.obs;
-  RxInt On_Bording_onchange = 0.obs;
+  RxInt onBoardingOnChange = 0.obs;
   // List likeList = [];
-  RxBool signuploder = false.obs;
-  RxBool signinploder = false.obs;
-  RxInt logincheck = 0.obs;
+  RxBool signUpLoader = false.obs;
+  RxBool signInpLoader = false.obs;
+  RxInt logInCheck = 0.obs;
   RxBool likeSelected = false.obs;
 
-  Pageview(int value) {
+  PageView(int value) {
     onchange = value;
     update();
   }
 
   AddInfo(int value) {
-    Addinfo_Selected = value;
+    addInfoSelected = value;
 
     update();
   }
 
   AddInfoWork(String value) {
-    Addinfo_Selected = value as int;
+    addInfoSelected = value as int;
 
     update();
   }

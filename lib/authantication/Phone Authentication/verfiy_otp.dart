@@ -4,15 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
-import '../../bottom_Navigation/bottom_NAV.dart';
 
-import '../../bottom_Navigation/bottom_navi_demo.dart';
-import '../../common_screen/Comman_Container.dart';
-import '../../common_screen/Comman_text.dart';
+import '../../common_screen/comman_text.dart';
+import '../../common_screen/common_container.dart';
 import '../../getx/controller.dart';
-import '../../screens/bottom_navigation_screen.dart';
 
 class VerifyOtp extends StatefulWidget {
   const VerifyOtp({Key? key}) : super(key: key);
@@ -23,12 +19,11 @@ class VerifyOtp extends StatefulWidget {
 
 class _VerifyOtpState extends State<VerifyOtp> {
   String? OTP;
-  bool isLoding = false;
+  bool isLoading = false;
   final Controller controller = Get.put(Controller());
   Future verifyOtp() async {
     try {
-      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-          verificationId: verificationCode!, smsCode: OTP.toString());
+      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: verificationCode!, smsCode: OTP.toString());
 
       await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
 
@@ -41,7 +36,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            "Inavalid OTP",
+            "Invalid OTP",
           ),
         ),
       );
@@ -63,7 +58,7 @@ class _VerifyOtpState extends State<VerifyOtp> {
             onCodeChanged: (String code) {
               //handle validation or checks here
             },
-            //runs when every textfield is filled
+            //runs when every textField is filled
             onSubmit: (String verificationCode) {
               setState(() {
                 OTP = verificationCode;
@@ -74,38 +69,37 @@ class _VerifyOtpState extends State<VerifyOtp> {
             height: 40.sp,
           ),
           // GetBuilder<Controller>(
-          //   builder: (controller) => controller.isLoding == true
+          //   builder: (controller) => controller.isLoading == true
           //       ? Center(child: CircularProgressIndicator())
           //       : Padding(
           //           padding: const EdgeInsets.symmetric(
           //               horizontal: 20, vertical: 20),
-          //           child: Comman_Container(
+          //           child: Common_Container(
           //             child: Center(
-          //                 child: Comman_Text(
+          //                 child: Common_Text(
           //               text: "Send Otp",
           //               color: Colors.white,
-          //               fontweight: FontWeight.bold,
-          //               fontsize: 20,
+          //               fontWeight: FontWeight.bold,
+          //               fontSize: 20,
           //             )),
           //             BorderRadius: BorderRadius.circular(40),
           //             height: 45.sp,
           //             width: double.infinity,
           //             color: Color(0xffB7E4C7),
-          //             ontap: () {
+          //             onTap: () {
           //               controller.updateLoader(true);
           //
-          //               verifyotp();
+          //               verifyOtp();
           //             },
           //           ),
           //         ),
           // ),
-          isLoding == false
+          isLoading == false
               ? Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                  child: Comman_Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: CommonContainer(
                     child: Center(
-                        child: Comman_Text(
+                        child: CommonText(
                       text: "Send Otp",
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -115,10 +109,10 @@ class _VerifyOtpState extends State<VerifyOtp> {
                     height: 45.sp,
                     width: double.infinity,
                     color: Color(0xffB7E4C7),
-                    ontap: () {
+                    onTap: () {
                       print("hello");
                       setState(() {
-                        isLoding = false;
+                        isLoading = false;
                       });
 
                       VerifyOtp();
