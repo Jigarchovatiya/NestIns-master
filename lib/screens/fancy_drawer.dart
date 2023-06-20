@@ -256,7 +256,7 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
             actions: [
               IconButton(
                 onPressed: () {
-                  Get.to(searchpage());
+                  Get.to(searchPage());
                 },
                 icon: Icon(Icons.search),
               ),
@@ -296,7 +296,7 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
                                         height: 130.sp,
                                         autoPlayAnimationDuration: Duration(seconds: 2),
                                         enlargeCenterPage: true,
-                                        itemCount: Pageview.length,
+                                        itemCount: PageList.length,
                                         itemBuilder: (context, index) {
                                           return Padding(
                                             padding: const EdgeInsets.all(8.0),
@@ -335,7 +335,7 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
                                               image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: AssetImage(
-                                                  Pageview[index],
+                                                  PageList[index],
                                                 ),
                                               ),
                                             ),

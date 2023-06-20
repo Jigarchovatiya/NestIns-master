@@ -16,11 +16,11 @@ class _SearchState extends State<Search> {
   void search(String que) async {
     final result = await FirebaseFirestore.instance.collection("Product").where('product_name', arrayContains: que).get();
 
-    searchresult = result.docs.map((e) => e.data()).toList();
+    searchResult = result.docs.map((e) => e.data()).toList();
     setState(() {});
   }
 
-  List searchresult = [];
+  List searchResult = [];
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +37,14 @@ class _SearchState extends State<Search> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: searchresult.length,
+                itemCount: searchResult.length,
                 itemBuilder: (context, index) {
                   return ListTile(
                     title: CommonText(
                       //fontFamily: "JV1",
-                      text: searchresult[index]["product_name"],
+                      text: searchResult[index]["product_name"],
                     ),
-                    subtitle: CommonText(text: searchresult[index]["product_catagory"]),
+                    subtitle: CommonText(text: searchResult[index]["product_category"]),
                   );
                 },
               ),

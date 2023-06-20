@@ -322,11 +322,11 @@ String searchText = "";
 
 //home screen data
 
-const String Fashionsale = "Fashion sale";
-const String subtitile = "Seel More >";
+const String FashionSale = "Fashion sale";
+const String subTitle = "See More >>>>";
 Profileimg pi = Get.put(Profileimg());
 //home screen
-List Pageview = [
+List PageList = [
   page_view1,
   page_view2,
   page_view3,
@@ -493,7 +493,7 @@ List profile = [
 RegExp email = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 RegExp password = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
 
-//categoreydemo screen
+//categoryDemo screen
 List categoriesDemo = [
   {
     "name": "chhattisgarh_dhoti_kurta",
@@ -539,7 +539,7 @@ List categoriesDemo = [
   },
 ];
 
-//comman app bar
+//common app bar
 
 AppBar CommonAppBar({String? name, List<Widget>? action, bool? centerTitle}) {
   return AppBar(

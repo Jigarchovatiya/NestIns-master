@@ -7,14 +7,14 @@ import 'package:sizer/sizer.dart';
 
 import 'global/variable.dart';
 
-class searchpage extends StatefulWidget {
-  const searchpage({Key? key}) : super(key: key);
+class searchPage extends StatefulWidget {
+  const searchPage({Key? key}) : super(key: key);
 
   @override
-  State<searchpage> createState() => _searchpageState();
+  State<searchPage> createState() => _searchPageState();
 }
 
-class _searchpageState extends State<searchpage> {
+class _searchPageState extends State<searchPage> {
   String query = "";
 
   var result;
@@ -99,7 +99,7 @@ class _searchpageState extends State<searchpage> {
                                                   sid: product['seller_id'],
                                                   pid: product['product_id'],
                                                   image: product['image'],
-                                                  category: product["product_catagory"],
+                                                  category: product["product_category"],
                                                   buyNow: [],
                                                   details: product["product_details"],
                                                   name: product["product_name"],

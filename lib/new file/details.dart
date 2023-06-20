@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class DetailsScreendemo extends StatefulWidget {
-  const DetailsScreendemo({Key? key}) : super(key: key);
+class DetailsScreenDemo extends StatefulWidget {
+  const DetailsScreenDemo({Key? key}) : super(key: key);
 
   @override
-  State<DetailsScreendemo> createState() => _DetailsScreendemoState();
+  State<DetailsScreenDemo> createState() => _DetailsScreenDemoState();
 }
 
-class _DetailsScreendemoState extends State<DetailsScreendemo> {
+class _DetailsScreenDemoState extends State<DetailsScreenDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +17,7 @@ class _DetailsScreendemoState extends State<DetailsScreendemo> {
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             itemCount: 10,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 0.71),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.71),
             itemBuilder: (context, index) {
               return Card(
                 margin: EdgeInsets.all(5),
@@ -31,10 +30,7 @@ class _DetailsScreendemoState extends State<DetailsScreendemo> {
                         height: 125,
                         width: 125,
                         margin: EdgeInsets.only(top: 10, bottom: 3),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: NetworkImage(""), fit: BoxFit.fill)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), image: DecorationImage(image: NetworkImage(""), fit: BoxFit.fill)),
                       ),
                     ],
                   ),

@@ -1,11 +1,11 @@
-class pincodeJson {
+class PinCodeJson {
   String? message;
   String? status;
   List<PostOffice>? postOffice;
 
-  pincodeJson({this.message, this.status, this.postOffice});
+  PinCodeJson({this.message, this.status, this.postOffice});
 
-  pincodeJson.fromJson(Map<String, dynamic> json) {
+  PinCodeJson.fromJson(Map<String, dynamic> json) {
     message = json['Message'];
     status = json['Status'];
     if (json['PostOffice'] != null) {
@@ -40,18 +40,7 @@ class PostOffice {
   String? state;
   String? country;
 
-  PostOffice(
-      {this.name,
-        this.description,
-        this.branchType,
-        this.deliveryStatus,
-        this.taluk,
-        this.circle,
-        this.district,
-        this.division,
-        this.region,
-        this.state,
-        this.country});
+  PostOffice({this.name, this.description, this.branchType, this.deliveryStatus, this.taluk, this.circle, this.district, this.division, this.region, this.state, this.country});
 
   PostOffice.fromJson(Map<String, dynamic> json) {
     name = json['Name'];

@@ -69,7 +69,6 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
             //     ),
             //   ),
             // ),
-
             SizedBox(
               height: 10.sp,
             ),
@@ -120,7 +119,7 @@ class _CategoryScreen_2State extends State<CategoryScreen_2> {
                               fontSize: 11.sp,
                             ),
                             trailing: Image.asset(
-                              categories[index]['imagess'],
+                              categories[index]['images'],
                               height: 150.sp,
                               width: 80.sp,
                               fit: BoxFit.fill,

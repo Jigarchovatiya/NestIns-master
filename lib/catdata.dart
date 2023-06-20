@@ -9,8 +9,8 @@ import 'global/variable.dart';
 
 class CatData extends StatefulWidget {
   final String image, name, price, category, details, stock, pid, sid;
-  final List buynow;
-  const CatData({Key? key, required this.image, required this.name, required this.price, required this.category, required this.details, required this.stock, required this.pid, required this.sid, required this.buynow}) : super(key: key);
+  final List buyNow;
+  const CatData({Key? key, required this.image, required this.name, required this.price, required this.category, required this.details, required this.stock, required this.pid, required this.sid, required this.buyNow}) : super(key: key);
 
   @override
   State<CatData> createState() => _CatDataState();

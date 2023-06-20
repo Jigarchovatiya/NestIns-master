@@ -48,8 +48,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<String?> uploadImage() async {
     try {
-      await FirebaseStorage.instance.ref('profileImge').putFile(image!);
-      final url = await FirebaseStorage.instance.ref('profileImge').getDownloadURL();
+      await FirebaseStorage.instance.ref('profileImage').putFile(image!);
+      final url = await FirebaseStorage.instance.ref('profileImage').getDownloadURL();
       return url;
     } on FirebaseException catch (e) {
       print("Firebase Storage ==>>${e.message}");

@@ -38,7 +38,7 @@ class AddressDemo extends StatefulWidget {
 
 class _AddressDemoState extends State<AddressDemo> {
   DateTime date = DateTime.now();
-  pincodeJson? pinJson;
+  PinCodeJson? pinJson;
   String pinCode = "", state = "", city = "", area = "", phone = "", no = "", error = "";
   bool isPinCode = false;
   DocumentReference buyNowRef = FirebaseFirestore.instance.collection("Order").doc();
@@ -452,7 +452,7 @@ class _AddressDemoState extends State<AddressDemo> {
     Map<String, dynamic> map = jsonDecode(response.body);
     print(map['PostOffice']);
 
-    pinJson = pincodeJson.fromJson(map);
+    pinJson = PinCodeJson.fromJson(map);
     if (pinJson!.status == "Success") {
       City.text = pinJson!.postOffice![0].district!;
       STATE.text = pinJson!.postOffice![0].state!;

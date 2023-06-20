@@ -228,7 +228,7 @@ class _Favorite_ScreenState extends State<Favorite_Screen> {
                                   },
                                 ),
                               )
-                            : Text("Gello");
+                            : Text("Hello");
                       } else {
                         return Center(
                           child: CircularProgressIndicator(),

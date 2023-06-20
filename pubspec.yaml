@@ -88,14 +88,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - asserts/image/
-    - asserts/pageview/
-    - asserts/onbording/
-    - asserts/catlogue/
-    - asserts/Categories/
-    - asserts/lottie/
-    - asserts/logo/
-    - asserts/onbording/
+    - assets/image/
+    - assets/pageview/
+    - assets/onbording/
+    - assets/catlogue/
+    - assets/Categories/
+    - assets/lottie/
+    - assets/logo/
+    - assets/onbording/
 
 
   #   - images/a_dot_ham.jpeg
@@ -114,27 +114,27 @@ flutter:
   fonts:
     - family: C1
       fonts:
-        - asset: asserts/Font/Cardo-Regular.ttf
+        - asset: assets/Font/Cardo-Regular.ttf
     - family: GR1
       fonts:
-        - asset: asserts/Font/Gayathri-Regular.ttf
+        - asset: assets/Font/Gayathri-Regular.ttf
     - family: GB1
       fonts:
-        - asset: asserts/Font/Gayathri-Bold.ttf
+        - asset: assets/Font/Gayathri-Bold.ttf
     - family: P1
       fonts:
-        - asset: asserts/Font/Poppins-Bold.ttf
+        - asset: assets/Font/Poppins-Bold.ttf
     - family: JB1
       fonts:
-        - asset: asserts/Font/Jost-Bold.ttf
+        - asset: assets/Font/Jost-Bold.ttf
     - family: JM1
       fonts:
-        - asset: asserts/Font/Jost-Medium.ttf
+        - asset: assets/Font/Jost-Medium.ttf
     - family: JS1
       fonts:
-        - asset: asserts/Font/Jost-SemiBold.ttf
+        - asset: assets/Font/Jost-SemiBold.ttf
     - family: JV1
       fonts:
-        - asset: asserts/Font/Jost-VariableFont_wght.ttf
+        - asset: assets/Font/Jost-VariableFont_wght.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

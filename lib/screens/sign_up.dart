@@ -169,7 +169,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                       child: CommonContainer(
                         borderRadius: BorderRadius.circular(40),
                         onTap: () {
-                          print("signuploder frist ${contoller.signUpLoader}");
+                          print("sign up Loader first ${contoller.signUpLoader}");
                           if (gloablekey.currentState!.validate()) {
                             showDialog(
                               context: context,
@@ -180,7 +180,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                               },
                             );
                             // controller.signuploder = true.obs;
-                            print("Signuploder true ${contoller.signUpLoader}");
+                            print("Sign up loader true ${contoller.signUpLoader}");
                             EmailAuthService.SignupUser(email: emailController.text, password: PasswordController.text).then((value) async {
                               if (value != null) {
                                 Get.back();

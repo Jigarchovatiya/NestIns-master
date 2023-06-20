@@ -205,7 +205,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                         Get.back();
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Email is already in use by another accoount"),
+                            content: Text("Email is already in use by another account"),
                           ),
                         );
                       }
@@ -238,7 +238,7 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
                 // GestureDetector(
                 //   onTap: () {
                 //     ScaffoldMessenger.of(context).showSnackBar(
-                //         SnackBar(content: Text("Invalid User!")));
+                //         SnackBar(content: Text("Invalid User!")));.0
                 //   },
                 //   child: Container(
                 //     decoration: BoxDecoration(

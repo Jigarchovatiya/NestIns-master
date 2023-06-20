@@ -24,13 +24,13 @@ class Sign_In extends StatefulWidget {
 
 class _Sign_InState extends State<Sign_In> {
   String countryCode = "91";
-  String countryFlage = "";
-  final usernamecontroler = TextEditingController();
-  final Email_controler = TextEditingController();
-  final Password_controler = TextEditingController();
-  bool passwordcheck = true;
+  String countryFlag = "";
+  final userNameController = TextEditingController();
+  final EmailController = TextEditingController();
+  final PasswordController = TextEditingController();
+  bool passwordCheck = true;
   int selected = 0;
-  bool isLoding = false;
+  bool isLoading = false;
   List name = [
     'Sign Up',
     'Sign In',
@@ -52,7 +52,7 @@ class _Sign_InState extends State<Sign_In> {
               CommonTextFiled(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: usernamecontroler,
+                controller: userNameController,
                 hintText: "Enter Name",
                 hintFontFamily: "JV1",
                 fontFamily: "JV1",
@@ -67,7 +67,7 @@ class _Sign_InState extends State<Sign_In> {
                     gloablekey.currentState!.validate();
                   });
                 },
-                suffixIcon: usernamecontroler.text.length > 2
+                suffixIcon: userNameController.text.length > 2
                     ? Icon(
                         Icons.check_circle,
                         color: Colors.black,
@@ -85,7 +85,7 @@ class _Sign_InState extends State<Sign_In> {
               CommonTextFiled(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: Email_controler,
+                controller: EmailController,
                 hintText: "Enter Email",
                 hintFontFamily: "JV1",
                 fontFamily: "JV1",
@@ -112,15 +112,15 @@ class _Sign_InState extends State<Sign_In> {
               CommonTextFiled(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: Password_controler,
-                obscureText: passwordcheck,
+                controller: PasswordController,
+                obscureText: passwordCheck,
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
-                      passwordcheck = !passwordcheck;
+                      passwordCheck = !passwordCheck;
                     });
                   },
-                  icon: passwordcheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                  icon: passwordCheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                 ),
                 hintText: "Enter password",
                 hintFontFamily: "JV1",
@@ -161,7 +161,7 @@ class _Sign_InState extends State<Sign_In> {
                           );
                         },
                       );
-                      EmailAuthService.LoginUser(password: Password_controler.text, email: Email_controler.text).then((value) async {
+                      EmailAuthService.LoginUser(password: PasswordController.text, email: EmailController.text).then((value) async {
                         if (value != null) {
                           Get.back();
                           Get.off(Bottom_navigation());
@@ -176,8 +176,8 @@ class _Sign_InState extends State<Sign_In> {
                           });
                           SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                           await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
-                          await sharedPreferences.setString("profile_name", usernamecontroler.text);
-                          await sharedPreferences.setString("profile_email", Email_controler.text);
+                          await sharedPreferences.setString("profile_name", userNameController.text);
+                          await sharedPreferences.setString("profile_email", EmailController.text);
                         } else {
                           Get.back();
                           ScaffoldMessenger.of(context).showSnackBar(
