@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'globle/media_query.dart';
-
 class Card extends StatefulWidget {
   const Card({Key? key}) : super(key: key);
 

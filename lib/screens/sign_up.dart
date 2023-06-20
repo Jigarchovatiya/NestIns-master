@@ -13,7 +13,7 @@ import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
 import '../bottom_Navigation/bottom_navi_demo.dart';
 import '../common_screen/loding.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class Sign_Up extends StatefulWidget {
   const Sign_Up({Key? key}) : super(key: key);
@@ -23,10 +23,10 @@ class Sign_Up extends StatefulWidget {
 }
 
 class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
-  final Email_controler = TextEditingController();
-  final usernamecontroler = TextEditingController();
-  final Password_controler = TextEditingController();
-  bool passwordcheck = true;
+  final emailController = TextEditingController();
+  final userNameController = TextEditingController();
+  final PasswordController = TextEditingController();
+  bool passwordCheck = true;
   int selected = 0;
   //bool signuploder = false;
   List name = [
@@ -62,7 +62,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               CommonTextFiled(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: usernamecontroler,
+                controller: userNameController,
                 hintText: "Enter Name",
                 hintFontFamily: "JM1",
                 fontFamily: "JV1",
@@ -70,13 +70,14 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                   if (value!.isEmpty) {
                     return "Enter Name";
                   }
+                  return null;
                 },
                 onChanged: (value) {
                   setState(() {
                     gloablekey.currentState!.validate();
                   });
                 },
-                suffixIcon: usernamecontroler.text.length > 2
+                suffixIcon: userNameController.text.length > 2
                     ? Icon(
                         Icons.check_circle,
                         color: black,
@@ -95,7 +96,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 fontFamily: "JV1",
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: Email_controler,
+                controller: emailController,
                 hintText: "Enter Email",
                 hintFontFamily: "JM1",
                 validator: (value) {
@@ -110,7 +111,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
                 },
-                suffixIcon: Email_controler.text.length == 10
+                suffixIcon: emailController.text.length == 10
                     ? Icon(
                         Icons.check_circle,
                         color: black,
@@ -128,15 +129,15 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
               CommonTextFiled(
                 filled: true,
                 fillColor: Colors.grey.shade200,
-                controller: Password_controler,
-                obscureText: passwordcheck,
+                controller: PasswordController,
+                obscureText: passwordCheck,
                 suffixIcon: IconButton(
                   onPressed: () {
                     setState(() {
-                      passwordcheck = !passwordcheck;
+                      passwordCheck = !passwordCheck;
                     });
                   },
-                  icon: passwordcheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
+                  icon: passwordCheck ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
                 ),
                 hintText: "Enter password",
                 hintFontFamily: "JM1",
@@ -149,6 +150,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                   } else if (passwordValid != true) {
                     return "please enter valid password";
                   }
+                  return null;
                 },
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
@@ -179,7 +181,7 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                             );
                             // controller.signuploder = true.obs;
                             print("Signuploder true ${contoller.signUpLoader}");
-                            EmailAuthService.SignupUser(email: Email_controler.text, password: Password_controler.text).then((value) async {
+                            EmailAuthService.SignupUser(email: emailController.text, password: PasswordController.text).then((value) async {
                               if (value != null) {
                                 Get.back();
                                 Get.off(Bottom_navigation());
@@ -194,13 +196,13 @@ class _Sign_UpState extends State<Sign_Up> with SingleTickerProviderStateMixin {
                                 });
                                 SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                                 await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
-                                await sharedPreferences!.setString("profile_name", usernamecontroler.text!);
-                                await sharedPreferences!.setString("profile_email", Email_controler.text!);
+                                await sharedPreferences.setString("profile_name", userNameController.text);
+                                await sharedPreferences.setString("profile_email", emailController.text);
                               } else {
                                 Get.back();
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
-                                    content: Text("Email is already in use by another accoount"),
+                                    content: Text("Email is already in use by another account"),
                                   ),
                                 );
                               }

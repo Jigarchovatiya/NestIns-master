@@ -1,17 +1,15 @@
 import 'package:e_com/screens/splash_screen.dart';
-import 'package:e_com/screens/tab_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
 import '../common_screen/comman_text.dart';
-import '../globle/shardpefrence.dart';
-import '../globle/variable.dart';
+import '../global/shardpefrence.dart';
+import '../global/variable.dart';
 import 'login_screen_h.dart';
 import 'orderScreen.dart';
 

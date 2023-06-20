@@ -2,22 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_com/common_screen/comman_text.dart';
 import 'package:e_com/common_screen/comman_textField.dart';
 import 'package:e_com/common_screen/common_container.dart';
-import 'package:e_com/globle/shardpefrence.dart';
 import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 
 import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
-import '../bottom_Navigation/bottom_NAV.dart';
 import '../bottom_Navigation/bottom_navi_demo.dart';
 import '../common_screen/loding.dart';
-import '../globle/variable.dart';
-import 'bottom_navigation_screen.dart';
+import '../global/variable.dart';
 
 class Sign_In extends StatefulWidget {
   const Sign_In({Key? key}) : super(key: key);
@@ -64,6 +60,7 @@ class _Sign_InState extends State<Sign_In> {
                   if (value!.isEmpty) {
                     return "Enter Name";
                   }
+                  return null;
                 },
                 onChanged: (value) {
                   setState(() {
@@ -136,6 +133,7 @@ class _Sign_InState extends State<Sign_In> {
                   } else if (passwordValid != true) {
                     return "please enter valid password";
                   }
+                  return null;
                 },
                 onChanged: (value) {
                   gloablekey.currentState!.validate();
@@ -178,8 +176,8 @@ class _Sign_InState extends State<Sign_In> {
                           });
                           SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
                           await sharedPreferences.setBool(Splash_ScreenState.KeyValue, true);
-                          await sharedPreferences!.setString("profile_name", usernamecontroler.text!);
-                          await sharedPreferences!.setString("profile_email", Email_controler.text!);
+                          await sharedPreferences.setString("profile_name", usernamecontroler.text);
+                          await sharedPreferences.setString("profile_email", Email_controler.text);
                         } else {
                           Get.back();
                           ScaffoldMessenger.of(context).showSnackBar(

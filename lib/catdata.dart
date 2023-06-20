@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/screens/addressscreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import 'common_screen/comman_text.dart';
 import 'common_screen/common_container.dart';
-import 'globle/media_query.dart';
-import 'globle/variable.dart';
+import 'global/variable.dart';
 
 class CatData extends StatefulWidget {
   final String image, name, price, category, details, stock, pid, sid;

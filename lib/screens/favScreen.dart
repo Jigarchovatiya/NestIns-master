@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class FavScreen extends StatefulWidget {
   const FavScreen({Key? key}) : super(key: key);

@@ -1,4 +1,3 @@
-import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 
 class CatDemo extends StatefulWidget {

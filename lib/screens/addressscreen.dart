@@ -14,15 +14,15 @@ import '../common_screen/comman_text.dart';
 import '../common_screen/comman_textField.dart';
 import '../common_screen/common_container.dart';
 import '../getx/controller.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 import '../helper/pincodeJson.dart';
 
 class AddressDemo extends StatefulWidget {
-  final String pprice, pid, sid;
+  final String pPrice, pid, sid;
   final String image, name, price, category, details;
   const AddressDemo({
     Key? key,
-    required this.pprice,
+    required this.pPrice,
     required this.pid,
     required this.image,
     required this.name,
@@ -39,9 +39,9 @@ class AddressDemo extends StatefulWidget {
 class _AddressDemoState extends State<AddressDemo> {
   DateTime date = DateTime.now();
   pincodeJson? pinJson;
-  String pincode = "", state = "", city = "", area = "", phone = "", no = "", error = "";
-  bool isPincode = false;
-  DocumentReference buynowref = FirebaseFirestore.instance.collection("Order").doc();
+  String pinCode = "", state = "", city = "", area = "", phone = "", no = "", error = "";
+  bool isPinCode = false;
+  DocumentReference buyNowRef = FirebaseFirestore.instance.collection("Order").doc();
   Razorpay? razorpay;
 
   void initState() {
@@ -158,7 +158,7 @@ class _AddressDemoState extends State<AddressDemo> {
   void openCheckOut() {
     var options = {
       'key': 'rzp_test_nIrj2lNM55W2mt',
-      'amount': int.parse(widget.pprice) * 100,
+      'amount': int.parse(widget.pPrice) * 100,
       'name': 'NestIn',
       'description': 'Fine T-Shirt',
       'retry': {'enabled': true, 'max_count': 1},
@@ -226,6 +226,7 @@ class _AddressDemoState extends State<AddressDemo> {
                         if (value!.isEmpty) {
                           return 'PhoneNo can not be empty';
                         }
+                        return null;
                       },
                       hintText: "Phone Number (+91)",
                     ),
@@ -268,6 +269,7 @@ class _AddressDemoState extends State<AddressDemo> {
                               if (value!.isEmpty) {
                                 return 'PinCode can not be empty';
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -285,6 +287,7 @@ class _AddressDemoState extends State<AddressDemo> {
                               if (value!.isEmpty) {
                                 return 'City can not be empty';
                               }
+                              return null;
                             },
                           ),
                         ),
@@ -301,6 +304,7 @@ class _AddressDemoState extends State<AddressDemo> {
                         if (value!.isEmpty) {
                           return 'State can not be empty';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -316,6 +320,7 @@ class _AddressDemoState extends State<AddressDemo> {
                         if (value!.isEmpty) {
                           return 'House can not be empty';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -329,6 +334,7 @@ class _AddressDemoState extends State<AddressDemo> {
                         if (value!.isEmpty) {
                           return 'Road can not be empty';
                         }
+                        return null;
                       },
                     ),
                   ),
@@ -436,8 +442,8 @@ class _AddressDemoState extends State<AddressDemo> {
   }
 
   Future<void> getData() async {
-    pincode = Pincode.text;
-    var url = Uri.parse('http://www.postalpincode.in/api/pincode/$pincode');
+    pinCode = Pincode.text;
+    var url = Uri.parse('http://www.postalpincode.in/api/pincode/$pinCode');
     var response = await http.get(url);
 
     print('Response status: ${response.statusCode}');
@@ -450,7 +456,7 @@ class _AddressDemoState extends State<AddressDemo> {
     if (pinJson!.status == "Success") {
       City.text = pinJson!.postOffice![0].district!;
       STATE.text = pinJson!.postOffice![0].state!;
-      isPincode = true;
+      isPinCode = true;
     }
 
     setState(() {});

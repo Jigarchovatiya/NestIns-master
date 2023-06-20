@@ -1,13 +1,11 @@
-import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../getx/controller.dart';
-import '../screens/Favorite_Screen.dart';
+import '../global/variable.dart';
 import '../screens/CategoriesScreen.dart';
-import '../screens/categories_screen.dart';
+import '../screens/Favorite_Screen.dart';
 import '../screens/fancy_drawer.dart';
 import '../screens/profile_screen.dart';
 
@@ -65,9 +63,7 @@ class Bottom_navigationState extends State<Bottom_navigation> {
                 AnimatedContainer(
                   duration: Duration(seconds: 1),
                   curve: Curves.fastLinearToSlowEaseIn,
-                  width: index == currentIndex
-                      ? displayWidth * .32
-                      : displayWidth * .18,
+                  width: index == currentIndex ? displayWidth * .32 : displayWidth * .18,
                   alignment: Alignment.center,
                   child: AnimatedContainer(
                     duration: Duration(seconds: 1),
@@ -75,9 +71,7 @@ class Bottom_navigationState extends State<Bottom_navigation> {
                     height: index == currentIndex ? displayWidth * .12 : 0,
                     width: index == currentIndex ? displayWidth * .32 : 0,
                     decoration: BoxDecoration(
-                      color: index == currentIndex
-                          ? DarkGreen2.withOpacity(.2)
-                          : Colors.transparent,
+                      color: index == currentIndex ? DarkGreen2.withOpacity(.2) : Colors.transparent,
                       borderRadius: BorderRadius.circular(50),
                     ),
                   ),
@@ -85,9 +79,7 @@ class Bottom_navigationState extends State<Bottom_navigation> {
                 AnimatedContainer(
                   duration: Duration(seconds: 1),
                   curve: Curves.fastLinearToSlowEaseIn,
-                  width: index == currentIndex
-                      ? displayWidth * .31
-                      : displayWidth * .18,
+                  width: index == currentIndex ? displayWidth * .31 : displayWidth * .18,
                   alignment: Alignment.center,
                   child: Stack(
                     children: [
@@ -96,17 +88,14 @@ class Bottom_navigationState extends State<Bottom_navigation> {
                           AnimatedContainer(
                             duration: Duration(seconds: 1),
                             curve: Curves.fastLinearToSlowEaseIn,
-                            width:
-                                index == currentIndex ? displayWidth * .13 : 0,
+                            width: index == currentIndex ? displayWidth * .13 : 0,
                           ),
                           AnimatedOpacity(
                             opacity: index == currentIndex ? 1 : 0,
                             duration: Duration(seconds: 1),
                             curve: Curves.fastLinearToSlowEaseIn,
                             child: Text(
-                              index == currentIndex
-                                  ? '${listOfStrings[index]}'
-                                  : '',
+                              index == currentIndex ? '${listOfStrings[index]}' : '',
                               style: TextStyle(
                                 color: DarkGreen2,
                                 fontWeight: FontWeight.w600,
@@ -121,15 +110,12 @@ class Bottom_navigationState extends State<Bottom_navigation> {
                           AnimatedContainer(
                             duration: Duration(seconds: 1),
                             curve: Curves.fastLinearToSlowEaseIn,
-                            width:
-                                index == currentIndex ? displayWidth * .03 : 20,
+                            width: index == currentIndex ? displayWidth * .03 : 20,
                           ),
                           Icon(
                             listOfIcons[index],
                             size: displayWidth * .076,
-                            color: index == currentIndex
-                                ? DarkGreen2
-                                : Colors.black26,
+                            color: index == currentIndex ? DarkGreen2 : Colors.black26,
                           ),
                         ],
                       ),

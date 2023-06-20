@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common_screen/comman_text.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class Favorite_Screen extends StatefulWidget {
   const Favorite_Screen({Key? key}) : super(key: key);

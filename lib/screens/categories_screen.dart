@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 
 import '../common_screen/comman_text.dart';
 import '../common_screen/common_container.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class CategoryScreen_2 extends StatefulWidget {
   const CategoryScreen_2({Key? key}) : super(key: key);

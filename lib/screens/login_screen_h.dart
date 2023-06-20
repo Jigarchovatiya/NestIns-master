@@ -5,7 +5,6 @@ import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -15,7 +14,7 @@ import '../bottom_Navigation/bottom_navi_demo.dart';
 import '../common_screen/comman_text.dart';
 import '../common_screen/common_container.dart';
 import '../common_screen/loding.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class Tab_Bar extends StatefulWidget {
   const Tab_Bar({Key? key}) : super(key: key);
@@ -28,8 +27,8 @@ class _Tab_BarState extends State<Tab_Bar> with SingleTickerProviderStateMixin {
   TabController? tabController;
 
   final gloablekey = GlobalKey<FormState>();
-  final Email_controler = TextEditingController();
-  final Password_controler = TextEditingController();
+  final emailController = TextEditingController();
+  final PasswordController = TextEditingController();
   List name = [
     'Sign Up',
     'Sign In',

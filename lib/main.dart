@@ -1,15 +1,12 @@
-import 'package:e_com/screens/RoadMap/RoadMap_Screen.dart';
-import 'package:e_com/screens/CategoriesScreen.dart';
 import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'bottom_Navigation/bottom_NAV.dart';
-import 'globle/shardpefrence.dart';
+
+import 'global/shardpefrence.dart';
 
 void main() async {
   ///milan
@@ -17,11 +14,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   sharedPreferences = await SharedPreferences.getInstance();
   await Firebase.initializeApp();
-  SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   //horizontal oriantaion lock kerva mate.
-  SystemChrome.setPreferredOrientations(
-      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   //safearea color kerva mate.
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

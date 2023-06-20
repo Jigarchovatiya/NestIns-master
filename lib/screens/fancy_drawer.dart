@@ -2,14 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_com/bottom_Navigation/bottom_navi_demo.dart';
 import 'package:e_com/getx/controller.dart';
 import 'package:e_com/screens/Favorite_Screen.dart';
-import 'package:e_com/screens/search.dart';
 import 'package:e_com/screens/splash_screen.dart';
-import 'package:e_com/screens/tab_bar.dart';
 import 'package:fancy_drawer/fancy_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
@@ -19,12 +16,11 @@ import '../authantication/email authantication/EmailAuthService.dart';
 import '../authantication/google auth service/google_auth_service.dart';
 import '../common_screen/comman_text.dart';
 import '../common_screen/common_container.dart';
-import '../globle/shardpefrence.dart';
-import '../globle/variable.dart';
+import '../global/shardpefrence.dart';
+import '../global/variable.dart';
 import '../searchdemo.dart';
 import 'CategoriesScreen.dart';
 import 'Details_screen.dart';
-import 'categories_screen.dart';
 import 'login_screen_h.dart';
 import 'orderScreen.dart';
 
@@ -37,7 +33,7 @@ class HomeScreen1 extends StatefulWidget {
 
 class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStateMixin {
   late FancyDrawerController _controller;
-  String? useremail, username;
+  String? userEmail, username;
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   Future<void> getUserEmail() async {
     final SharedPreferences prefs = await _prefs;
@@ -45,7 +41,7 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
     final email = prefs.getString("profile_email");
     final name = prefs.getString("profile_name");
 
-    useremail = email;
+    userEmail = email;
     username = name;
     setState(() {});
   }
@@ -487,10 +483,10 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
                                                                             borderRadius: BorderRadius.circular(5),
                                                                             onTap: () {
                                                                               Get.to(
-                                                                                DetilsScreen(
+                                                                                DetailsScreen(
                                                                                   sid: product['seller_id'],
                                                                                   pid: product['product_id'],
-                                                                                  buynow: snap.data!['buyNow'],
+                                                                                  buyNow: snap.data!['buyNow'],
                                                                                   image: product['image'],
                                                                                   category: product["product_catagory"],
                                                                                   details: product["product_details"],
@@ -505,7 +501,7 @@ class _HomeScreen1State extends State<HomeScreen1> with SingleTickerProviderStat
                                                                             color: white,
                                                                             image: DecorationImage(
                                                                               fit: BoxFit.cover,
-                                                                              image: NetworkImage(product!['image'].toString()),
+                                                                              image: NetworkImage(product['image'].toString()),
                                                                             ),
                                                                           ),
                                                                         ),

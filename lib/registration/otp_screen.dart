@@ -1,24 +1,12 @@
-// ignore_for_file: use_build_context_synchronously
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/globle/variable.dart';
-import 'package:e_com/registration/regisration_screen.dart';
 import 'package:e_com/screens/fancy_drawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
 
 import '../authantication/Phone Authentication/enter_mobile.dart';
 import '../bottom_Navigation/bottom_navi_demo.dart';
-// import 'package:kudrati_kahumbo/model/user_model.dart';
-// import 'package:kudrati_kahumbo/screen/auth/regisration_screen.dart';
-// import 'package:kudrati_kahumbo/utils/dimensions.dart';
-// import 'package:pinput/pinput.dart';
-// import '../../helper/helper_function.dart';
-// import '../../utils/app_colors.dart';
+import '../global/variable.dart';
 
 class OTPScreen extends StatefulWidget {
   const OTPScreen({super.key});
@@ -31,10 +19,9 @@ class _OTPScreenState extends State<OTPScreen> {
   final _formKey = GlobalKey<FormState>();
   var pinCode = "";
   String? OTP;
-  Future verifyotp() async {
+  Future verifyOtp() async {
     try {
-      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(
-          verificationId: verificationCode!, smsCode: OTP.toString());
+      PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.credential(verificationId: verificationCode!, smsCode: OTP.toString());
 
       await FirebaseAuth.instance.signInWithCredential(phoneAuthCredential);
       Navigator.pushReplacement(
@@ -58,10 +45,7 @@ class _OTPScreenState extends State<OTPScreen> {
     final defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: const TextStyle(
-          fontSize: 20,
-          color: Color.fromARGB(255, 255, 255, 255),
-          fontWeight: FontWeight.w600),
+      textStyle: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 255, 255), fontWeight: FontWeight.w600),
       decoration: BoxDecoration(
         border: Border.all(color: const Color.fromARGB(255, 178, 176, 178)),
         borderRadius: BorderRadius.circular(12),
@@ -165,7 +149,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () async {
-                      verifyotp().then(
+                      verifyOtp().then(
                         (value) => Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -195,8 +179,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: DarkGreen2,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     child: Text(
                       "Verify Phone Number",
@@ -209,8 +192,7 @@ class _OTPScreenState extends State<OTPScreen> {
                   alignment: Alignment.topLeft,
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, "registration", (route) => false);
+                      Navigator.pushNamedAndRemoveUntil(context, "registration", (route) => false);
                     },
                     child: const Text(
                       "Edit Phone Number ?",

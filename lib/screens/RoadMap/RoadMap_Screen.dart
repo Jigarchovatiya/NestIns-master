@@ -1,10 +1,11 @@
 import 'package:e_com/common_screen/comman_text.dart';
 import 'package:e_com/common_screen/comman_textField.dart';
-import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:sizer/sizer.dart';
+
+import '../../global/variable.dart';
 
 class RoadMapScreen extends StatefulWidget {
   const RoadMapScreen({super.key});

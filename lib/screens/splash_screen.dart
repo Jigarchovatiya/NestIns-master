@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../bottom_Navigation/bottom_navi_demo.dart';
 import '../common_screen/common_container.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class Splash_Screen extends StatefulWidget {
   const Splash_Screen({Key? key}) : super(key: key);

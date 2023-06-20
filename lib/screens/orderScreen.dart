@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common_screen/common_container.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 
 class OderScreen extends StatefulWidget {
   const OderScreen({Key? key}) : super(key: key);
@@ -16,7 +16,7 @@ class OderScreen extends StatefulWidget {
 }
 
 class _OderScreenState extends State<OderScreen> {
-  final globalkey = GlobalKey<FormState>();
+  final globalKey = GlobalKey<FormState>();
   TextEditingController title = TextEditingController();
   TextEditingController content = TextEditingController();
   @override

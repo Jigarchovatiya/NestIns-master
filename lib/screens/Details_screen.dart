@@ -1,20 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_com/common_screen/common_container.dart';
-import 'package:e_com/globle/media_query.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../common_screen/comman_text.dart';
-import '../globle/variable.dart';
+import '../global/media_query.dart';
+import '../global/variable.dart';
 import 'addressscreen.dart';
 
-class DetilsScreen extends StatefulWidget {
+class DetailsScreen extends StatefulWidget {
   final String image, name, price, category, details, stock, pid, sid;
-  final List buynow;
+  final List buyNow;
 
-  const DetilsScreen({
+  const DetailsScreen({
     Key? key,
     required this.image,
     required this.name,
@@ -22,16 +22,16 @@ class DetilsScreen extends StatefulWidget {
     required this.category,
     required this.details,
     required this.stock,
-    required this.buynow,
+    required this.buyNow,
     required this.pid,
     required this.sid,
   }) : super(key: key);
 
   @override
-  State<DetilsScreen> createState() => DetilsScreenState();
+  State<DetailsScreen> createState() => DetailsScreenState();
 }
 
-class DetilsScreenState extends State<DetilsScreen> {
+class DetailsScreenState extends State<DetailsScreen> {
   @override
   // void initState() {
   //   razorpay = Razorpay();
@@ -344,7 +344,7 @@ class DetilsScreenState extends State<DetilsScreen> {
                                                       builder: (context) => AddressDemo(
                                                         sid: widget.sid,
                                                         pid: widget.pid,
-                                                        pprice: widget.price,
+                                                        pPrice: widget.price,
                                                         image: widget.image,
                                                         category: widget.category,
                                                         details: widget.details,

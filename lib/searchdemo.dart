@@ -1,14 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_com/common_screen/common_container.dart';
-import 'package:e_com/globle/variable.dart';
 import 'package:e_com/screens/Details_screen.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
+
+import 'global/variable.dart';
 
 class searchpage extends StatefulWidget {
   const searchpage({Key? key}) : super(key: key);
@@ -98,12 +95,12 @@ class _searchpageState extends State<searchpage> {
                                         return GestureDetector(
                                             onTap: () {
                                               Get.to(
-                                                DetilsScreen(
+                                                DetailsScreen(
                                                   sid: product['seller_id'],
                                                   pid: product['product_id'],
                                                   image: product['image'],
                                                   category: product["product_catagory"],
-                                                  buynow: [],
+                                                  buyNow: [],
                                                   details: product["product_details"],
                                                   name: product["product_name"],
                                                   price: product["product_price"],

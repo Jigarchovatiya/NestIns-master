@@ -1,14 +1,11 @@
-// ignore_for_file: unnecessary_string_interpolations
-
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../common_screen/comman_text.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 import 'otp_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -117,6 +114,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     } else if (value.length < 10) {
                       return "Enter must be 10 Digits";
                     }
+                    return null;
                   },
                   controller: phoneNo,
                   keyboardType: TextInputType.number,

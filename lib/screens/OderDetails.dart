@@ -1,14 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:e_com/globle/media_query.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common_screen/comman_text.dart';
-import '../getx/controller.dart';
-import '../globle/variable.dart';
-import 'addressscreen.dart';
+import '../global/media_query.dart';
+import '../global/variable.dart';
 
 class OderDetails extends StatefulWidget {
   final String image, name, price, category, details, date;

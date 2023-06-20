@@ -1,4 +1,3 @@
-import 'package:e_com/globle/variable.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
@@ -18,6 +17,7 @@ import '../category/haryana_dhoti.dart';
 import '../category/haryana_ghaghra_choli.dart';
 import '../category/haryana_kurta_payjama.dart';
 import '../common_screen/comman_text.dart';
+import '../global/variable.dart';
 
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({Key? key}) : super(key: key);

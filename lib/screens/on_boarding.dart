@@ -1,14 +1,11 @@
-import 'package:e_com/screens/tab_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:sizer/sizer.dart';
 
 import '../common_screen/comman_text.dart';
 import '../common_screen/common_container.dart';
 import '../getx/controller.dart';
-import '../globle/variable.dart';
+import '../global/variable.dart';
 import 'login_screen_h.dart';
 
 class On_Boarding extends StatefulWidget {

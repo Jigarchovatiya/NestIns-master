@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:e_com/authantication/google%20auth%20service/google_auth_service.dart';
 import 'package:e_com/common_screen/comman_text.dart';
-import 'package:e_com/globle/shardpefrence.dart';
 import 'package:e_com/screens/RoadMap/RoadMap_Screen.dart';
 import 'package:e_com/screens/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,8 +16,9 @@ import 'package:velocity_x/velocity_x.dart';
 import '../authantication/email authantication/EmailAuthService.dart';
 import '../common_screen/common_container.dart';
 import '../getx/controller.dart';
-import '../globle/profile_controller.dart';
-import '../globle/variable.dart';
+import '../global/profile_controller.dart';
+import '../global/shardpefrence.dart';
+import '../global/variable.dart';
 import 'Favorite_Screen.dart';
 import 'login_screen_h.dart';
 import 'orderScreen.dart';
@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  Future<String?> uplodeImage() async {
+  Future<String?> uploadImage() async {
     try {
       await FirebaseStorage.instance.ref('profileImge').putFile(image!);
       final url = await FirebaseStorage.instance.ref('profileImge').getDownloadURL();
@@ -54,6 +54,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     } on FirebaseException catch (e) {
       print("Firebase Storage ==>>${e.message}");
     }
+    return null;
   }
 
   // profiledata() async {
